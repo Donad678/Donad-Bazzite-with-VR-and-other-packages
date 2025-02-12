@@ -30,6 +30,7 @@ cd ../
 rm -r -f ./envision
 rm /usr/share/icons/*/icon-theme.cache
 update-desktop-database /usr/share/icons/*/
+gtk4-update-icon-cache -t -f /usr/share/icons/*/
 
 # Use a COPR Example:
 #
