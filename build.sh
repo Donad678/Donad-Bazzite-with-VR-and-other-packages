@@ -12,8 +12,9 @@ set -ouex pipefail
 # install krusader
 dnf install -y krusader
 # Build dependencys for Envision
-dnf install -y eigen3-devel glslang-devel glslc libbsd-devel systemd-devel libXrandr-devel mesa-libGL-devel ninja-build openxr-devel SDL2-devel wayland-devel wayland-protocols-devel
-
+dnf install -y cmake eigen3-devel gcc-c++ git-lfs glslang-devel glslc libbsd-devel mesa-libGL-devel systemd-devel libX11-devel libxcb-devel libXrandr-devel mesa-libGL-devel ninja-build opencv-devel openxr-devel SDL2-devel vulkan-devel vulkan-loader-devel wayland-devel wayland-protocols-devel
+# install lact
+dnf install -y lact
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
