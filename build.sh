@@ -9,8 +9,10 @@ set -ouex pipefail
 # List of rpmfusion packages can be found here:
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
-# this installs a package from fedora repos
-dnf install -y tmux krusader
+# install krusader
+dnf install -y krusader
+# Build dependencys for Envision
+dnf install -y eigen3-devel glslang-devel glslc libbsd-devel systemd-devel libXrandr-devel mesa-libGL-devel ninja-build openxr-devel SDL2-devel wayland-devel wayland-protocols-devel
 
 # Use a COPR Example:
 #
