@@ -25,7 +25,7 @@ cd envision
 meson setup build -Dprefix="$PWD/build/localprefix" -Dprofile=development
 ninja -C build
 ninja -C build install
-cp -r ./build/localprefix/* /usr/
+cp -r -v ./build/localprefix/* /usr/
 cd ../
 rm -r -f ./envision
 
