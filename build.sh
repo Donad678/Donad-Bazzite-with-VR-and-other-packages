@@ -18,6 +18,17 @@ dnf install -y lact
 # install dotnet 8/9
 dnf install -y dotnet-sdk-8.0 dotnet-sdk-9.0
 
+# build envision
+dnf install -y meson rustc gtk4-devel gtk4-devel cargo openssl-devel libadwaita-devel
+git clone https://gitlab.com/gabmus/envision/
+cd envision
+meson setup build -Dprefix="$PWD/build/localprefix" -Dprofile=development
+ninja -C build
+ninja -C build install
+cp -r ./build/localprefix/* /usr/
+cd ../
+rm -r -f ./envision
+
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
