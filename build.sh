@@ -28,6 +28,8 @@ ninja -C build install
 cp -r -v ./build/localprefix/* /usr/
 cd ../
 rm -r -f ./envision
+rm /usr/share/icons/*/icon-theme.cache
+update-desktop-database /usr/share/icons/*/
 
 # Use a COPR Example:
 #
