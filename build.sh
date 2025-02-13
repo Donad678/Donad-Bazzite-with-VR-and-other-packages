@@ -19,18 +19,7 @@ dnf install -y lact
 dnf install -y dotnet-sdk-8.0 dotnet-sdk-9.0
 
 # build envision
-dnf install -y meson rustc gtk4-devel gtk4-devel cargo openssl-devel libadwaita-devel vte-2.91-gtk4
-git clone https://gitlab.com/gabmus/envision/
-cd envision
-meson setup build -Dprefix="/usr" -Dprofile=development
-ninja -C build
-ninja -C build install
-# cp -r -v ./build/localprefix/* /usr/
-cd ../
-rm -r -f ./envision
-# rm /usr/share/icons/*/icon-theme.cache
-# update-desktop-database /usr/share/icons/*/
-#  gtk4-update-icon-cache -t -f /usr/share/icons/*/
+/tmp/install-scripts/build-envision.sh
 
 # Use a COPR Example:
 #
