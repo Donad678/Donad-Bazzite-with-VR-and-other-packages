@@ -13,7 +13,7 @@ FROM ghcr.io/ublue-os/bazzite-gnome-nvidia:stable
 ## make modifications desired in your image and install packages by modifying the build.sh script
 ## the following RUN directive does all the things required to run "build.sh" as recommended.
 
-COPY /build.sh /install-scripts /tmp/
+COPY / /tmp/
 
 RUN mkdir -p /var/lib/alternatives && \
     /tmp/build.sh && \
