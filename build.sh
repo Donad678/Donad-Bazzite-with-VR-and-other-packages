@@ -19,7 +19,7 @@ dnf install -y lact
 dnf install -y dotnet-sdk-8.0 dotnet-sdk-9.0
 
 # build envision
-/tmp/install-scripts/build-envision.sh
+./install-scripts/build-envision.sh
 
 # Use a COPR Example:
 #
