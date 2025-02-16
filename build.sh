@@ -10,13 +10,13 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # install krusader
-dnf install -y krusader
+dnf5 install -y krusader
 # Build dependencys for Envision
-dnf install -y cmake eigen3-devel gcc-c++ git-lfs glslang-devel glslc libbsd-devel mesa-libGL-devel systemd-devel libX11-devel libxcb-devel libXrandr-devel mesa-libGL-devel ninja-build opencv-devel openxr-devel SDL2-devel vulkan-devel vulkan-loader-devel wayland-devel wayland-protocols-devel
+dnf5 install -y cmake eigen3-devel gcc-c++ git-lfs glslang-devel glslc libbsd-devel mesa-libGL-devel systemd-devel libX11-devel libxcb-devel libXrandr-devel mesa-libGL-devel ninja-build opencv-devel openxr-devel SDL2-devel vulkan-devel vulkan-loader-devel wayland-devel wayland-protocols-devel
 # install lact
-dnf install -y lact
+dnf5 install -y lact
 # install dotnet 8/9
-dnf install -y dotnet-sdk-8.0 dotnet-sdk-9.0
+dnf5 install -y dotnet-sdk-8.0 dotnet-sdk-9.0
 
 # build envision
 /tmp/install-scripts/build-envision.sh
