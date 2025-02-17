@@ -21,6 +21,10 @@ dnf5 install -y dotnet-sdk-8.0 dotnet-sdk-9.0
 # build envision
 /tmp/install-scripts/build-envision.sh
 
+# install windows 95
+
+/tmp/install-windows95.sh
+
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
