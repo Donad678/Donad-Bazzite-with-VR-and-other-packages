@@ -23,7 +23,7 @@ dnf5 install -y dotnet-sdk-8.0 dotnet-sdk-9.0
 
 # install windows 95
 
-/tmp/install-windows95.sh
+/tmp/install-scripts/install-windows95.sh
 
 # Use a COPR Example:
 #
