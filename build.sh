@@ -21,6 +21,7 @@ dnf5 install -y dotnet-sdk-8.0 dotnet-sdk-9.0
 # install vmware
 #/tmp/install-scripts/install-vmware.sh
 wget -O /tmp/vmware.bundle https://stream.donadvr.de/public/vmware-workstation-pro-17.bundle
+chmod +x /tmp/vmware.bundle
 /tmp/vmware.bundle
 
 # build envision
