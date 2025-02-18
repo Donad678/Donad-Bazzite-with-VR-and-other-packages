@@ -18,12 +18,12 @@ dnf5 install -y lact
 # install dotnet 8/9
 dnf5 install -y dotnet-sdk-8.0 dotnet-sdk-9.0
 
-dnf5 install -y kernel-devel kernel-headers gcc make patch
+# dnf5 install -y kernel-devel kernel-headers gcc make patch
 # install vmware
 #/tmp/install-scripts/install-vmware.sh
-wget -O /tmp/vmware.bundle https://stream.donadvr.de/public/vmware-workstation-pro-17.bundle
-chmod +x /tmp/vmware.bundle
-/tmp/vmware.bundle
+#wget -O /tmp/vmware.bundle https://stream.donadvr.de/public/vmware-workstation-pro-17.bundle
+#chmod +x /tmp/vmware.bundle
+#/tmp/vmware.bundle
 
 # build envision
 /tmp/install-scripts/build-envision.sh
