@@ -26,7 +26,7 @@ dnf5 install -y dotnet-sdk-8.0 dotnet-sdk-9.0
 
 # install vmware
 
-# /tmp/install-scripts/install-vmware.sh
+/tmp/install-scripts/install-vmware.sh
 
 # Use a COPR Example:
 #
