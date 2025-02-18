@@ -22,8 +22,11 @@ dnf5 install -y dotnet-sdk-8.0 dotnet-sdk-9.0
 /tmp/install-scripts/build-envision.sh
 
 # install windows 95
-
 /tmp/install-scripts/install-windows95.sh
+
+# install vmware
+
+# /tmp/install-scripts/install-vmware.sh
 
 # Use a COPR Example:
 #
