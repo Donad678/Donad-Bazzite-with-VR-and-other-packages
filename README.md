@@ -13,6 +13,8 @@ GNOME: rpm-ostree rebase ostree-image-signed:docker://ghcr.io/donad678/donad-baz
 
 KDE: rpm-ostree rebase ostree-image-signed:docker://ghcr.io/donad678/donad-bazzite-kde:latest
 
-or download the ISO from the latest build artifact
+# ISO
+
+You can also download the ISO from the latest build artifact for a fresh install
 
 https://github.com/Donad678/Donad-Bazzite-with-VR-and-other-packages/actions/workflows/build_iso.yml
