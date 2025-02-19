@@ -8,7 +8,7 @@ Also added a some programs, for personal use, might miss dependencies you need i
 
 rebase to it with: 
 
-GNOME: rpm-ostree rebase ostree-image-signed:docker://ghcr.io/donad678/donad-bazzite-with-vr-and-other-packages:latest
+GNOME: rpm-ostree rebase ostree-image-signed:docker://ghcr.io/donad678/donad-bazzite-gnome:latest
 
 
-KDE: rpm-ostree rebase ostree-image-signed:docker://ghcr.io/donad678/donad-bazzite-with-vr-and-other-packages-kde:latest
+KDE: rpm-ostree rebase ostree-image-signed:docker://ghcr.io/donad678/donad-bazzite-kde:latest
