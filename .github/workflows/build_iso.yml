@@ -22,8 +22,8 @@ jobs:
       fail-fast: false
       matrix:
         image_name:
-          - donad-bazzite-with-vr-and-other-packages
-          - donad-bazzite-with-vr-and-other-packages-kde
+          - donad-bazzite-gnome
+          - donad-bazzite-kde
         major_version: [41]
     steps:
 
