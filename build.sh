@@ -22,7 +22,7 @@ dnf5 install -y dotnet-sdk-8.0 dotnet-sdk-9.0
 /tmp/install-scripts/build-envision.sh
 
 # install windows 95
-/tmp/install-scripts/install-windows95.sh
+# /tmp/install-scripts/install-windows95.sh
 
 
 
