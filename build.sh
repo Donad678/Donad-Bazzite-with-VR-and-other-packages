@@ -21,6 +21,9 @@ dnf5 install -y dotnet-sdk-8.0 dotnet-sdk-9.0
 # Install BS-Manager for easier Beat Saber modding
 # /tmp/install-scripts/install-bsmanager.sh
 
+# Install Virtual Here USB Server
+/tmp/install-scripts/install-virtualhere-server.sh
+
 # build envision
 /tmp/install-scripts/build-envision.sh
 
