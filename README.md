@@ -6,6 +6,8 @@ Modified Bazzite image, added build dependencies for what I use in Envision as w
 
 Also added a some programs, for personal use, might miss dependencies you need in Envision
 
+The reason why Nvidia is the standard image is because thats what I use and set up first
+
 # Rebasing
 
 ## NVIDIA
