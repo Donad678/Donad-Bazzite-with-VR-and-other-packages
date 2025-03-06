@@ -1,5 +1,5 @@
 ---
-name: Build Custom Image KDE
+name: Build Custom Image KDE Mesa
 on:
   pull_request:
     branches:
