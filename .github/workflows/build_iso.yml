@@ -26,6 +26,8 @@ jobs:
         image_name:
           - donad-bazzite-gnome
           - donad-bazzite-kde
+          - donad-bazzite-gnome-mesa
+          - donad-bazzite-kde-mesa
         major_version: [41]
     steps:
 
