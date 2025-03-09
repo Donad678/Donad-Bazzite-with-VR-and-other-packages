@@ -18,6 +18,12 @@ dnf5 install -y lact
 # install dotnet 8/9
 dnf5 install -y dotnet-sdk-8.0 dotnet-sdk-9.0
 
+# Because I can, here is ani-cli, an anime watch tool for linux
+dnf5 -y copr enable derisis13/ani-cli
+dnf5 -y install ani-cli
+dnf5 -y copr disable derisis13/ani-cli
+
+
 # Install BS-Manager for easier Beat Saber modding
 # /tmp/install-scripts/install-bsmanager.sh
 
