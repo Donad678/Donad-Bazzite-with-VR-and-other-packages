@@ -14,7 +14,9 @@ set -ouex pipefail
 # install krusader
 dnf5 install -y krusader
 # Build dependencys for Envision
-dnf5 --setopt=disable_excludes=* install -y  cmake eigen3-devel gcc-c++ git-lfs glslang-devel glslc libbsd-devel mesa-libGL-devel systemd-devel libX11-devel libxcb-devel libXrandr-devel ninja-build opencv-devel openxr-devel SDL2-devel vulkan-devel vulkan-loader-devel wayland-devel wayland-protocols-devel
+dnf5 install -y  cmake eigen3-devel gcc-c++ git-lfs glslang-devel glslc libbsd-devel mesa-libGL-devel systemd-devel libX11-devel libxcb-devel libXrandr-devel ninja-build opencv-devel openxr-devel SDL2-devel vulkan-devel vulkan-loader-devel wayland-devel wayland-protocols-devel
+#dnf5 --setopt=disable_excludes=* install -y  cmake eigen3-devel gcc-c++ git-lfs glslang-devel glslc libbsd-devel mesa-libGL-devel systemd-devel libX11-devel libxcb-devel libXrandr-devel ninja-build opencv-devel openxr-devel SDL2-devel vulkan-devel vulkan-loader-devel wayland-devel wayland-protocols-devel
+
 # install lact
 dnf5 install -y lact
 # install dotnet 8/9
