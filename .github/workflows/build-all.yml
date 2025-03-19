@@ -7,11 +7,11 @@ on:
       - main
   schedule:
     - cron: '05 10 * * *'  # 10:05am UTC everyday
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - '**/README.md'
+  #push:
+  #  branches:
+   #   - main
+   # paths-ignore:
+   #   - '**/README.md'
 
 jobs:
   build-kde-nvidia-image:
