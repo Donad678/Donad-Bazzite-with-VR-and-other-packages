@@ -12,15 +12,15 @@ The reason why Nvidia is the standard image is because thats what I use and set 
 
 ## NVIDIA
 
-GNOME: rpm-ostree rebase ostree-image-signed:docker://ghcr.io/donad678/donad-bazzite-gnome:latest
+**GNOME:** ```rpm-ostree rebase ostree-image-signed:docker://ghcr.io/donad678/donad-bazzite-gnome:latest```
 
-KDE: rpm-ostree rebase ostree-image-signed:docker://ghcr.io/donad678/donad-bazzite-kde:latest
+**KDE:** ```rpm-ostree rebase ostree-image-signed:docker://ghcr.io/donad678/donad-bazzite-kde:latest```
 
 ## AMD/Intel
 
-GNOME: rpm-ostree rebase ostree-image-signed:docker://ghcr.io/donad678/donad-bazzite-gnome-mesa:latest
+**GNOME:** ```rpm-ostree rebase ostree-image-signed:docker://ghcr.io/donad678/donad-bazzite-gnome-mesa:latest```
 
-KDE: rpm-ostree rebase ostree-image-signed:docker://ghcr.io/donad678/donad-bazzite-kde-mesa:latest
+**KDE:** ```rpm-ostree rebase ostree-image-signed:docker://ghcr.io/donad678/donad-bazzite-kde-mesa:latest```
 
 # ISO
 
