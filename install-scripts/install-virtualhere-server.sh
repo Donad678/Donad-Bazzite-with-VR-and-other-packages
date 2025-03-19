@@ -8,4 +8,4 @@ mv vhusbdx86_64 /usr/bin
 if [ -d "/etc/systemd/system" ]; then
   cp /tmp/misc/virtualhere.service /etc/systemd/system/virtualhere.service
 fi
-systemctl enable virtualhere.service
+# systemctl enable virtualhere.service
