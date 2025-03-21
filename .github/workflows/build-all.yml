@@ -30,3 +30,9 @@ jobs:
   build-gnome-image:
     uses: ./.github/workflows/build_mesa.yml
     secrets: inherit
+  build-gnome-steam-deck-image:
+    uses: ./.github/workflows/build_deck.yml
+    secrets: inherit
+  build-kde-steam-deck-image:
+    uses: ./.github/workflows/build-kde_deck.yml
+    secrets: inherit

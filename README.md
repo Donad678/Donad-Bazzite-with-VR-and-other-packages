@@ -22,6 +22,12 @@ The reason why Nvidia is the standard image is because thats what I use and set 
 
 **KDE:** ```rpm-ostree rebase ostree-image-signed:docker://ghcr.io/donad678/donad-bazzite-kde-mesa:latest```
 
+## Steam Deck
+
+**GNOME:** ```rpm-ostree rebase ostree-image-signed:docker://ghcr.io/donad678/donad-bazzite-gnome-deck:latest```
+
+**KDE:** ```rpm-ostree rebase ostree-image-signed:docker://ghcr.io/donad678/donad-bazzite-kde-deck:latest```
+
 # ISO
 
 You can also download the ISO from the latest build artifact for a fresh install
