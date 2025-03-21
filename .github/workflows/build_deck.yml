@@ -1,5 +1,5 @@
 ---
-name: Build Custom Image Mesa
+name: Build Custom Image GNOME STEAM DECK
 on:
   workflow_call:
   #pull_request:
