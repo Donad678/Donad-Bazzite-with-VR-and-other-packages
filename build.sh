@@ -15,7 +15,7 @@ set -ouex pipefail
 dnf5 install -y krusader
 
 # install lact
-dnf5 install -y lact
+#dnf5 install -y lact
 
 # install dotnet 8/9
 dnf5 install -y dotnet-sdk-8.0 dotnet-sdk-9.0
