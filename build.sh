@@ -14,6 +14,12 @@ set -ouex pipefail
 # install krusader
 dnf5 install -y krusader
 
+# Add terra repo
+curl -fsSL https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo | pkexec tee /etc/yum.repos.d/terra.repo
+rpm-ostree install terra-release
+dnf5 install terra-release-extras
+dnf5 config-manager setopt terra-mesa.enabled=1
+
 # install lact
 #dnf5 install -y lact
 
