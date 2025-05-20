@@ -12,9 +12,8 @@ set -ouex pipefail
 # dnf5 update -y
 
 # Add terra repo
-dnf5 install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
-dnf5 install terra-release-extras
-dnf5 config-manager setopt terra-mesa.enabled=1
+# Bazzite disabled this for some reason so lets re-enable it again
+dnf5 config-manager setopt terra.enabled=1 terra-extras.enabled=1 terra-mesa.enabled=1
 
 # install krusader
 dnf5 install -y krusader
