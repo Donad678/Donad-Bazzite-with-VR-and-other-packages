@@ -10,7 +10,7 @@ dnf5 install -y cmake eigen3-devel gcc-c++ git-lfs glslang-devel glslc libbsd-de
 dnf5 install -y meson x264-devel rustc gtk4-devel gtk4-devel cargo openssl-devel libadwaita-devel vte-2.91-gtk4 clang-devel libusb1 libusb1-devel onnx-devel onnx-libs onnxruntime onnxruntime-devel
 
 
-dnf5 install -y envision-monado envision-wivrn
+dnf5 install -y envision-monado
 dnf5 install -y wivrn-dashboard
 #dnf5 -y remove envision
 dnf5 -y copr disable bazzite-org/bazzite-multilib
