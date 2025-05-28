@@ -11,6 +11,7 @@ dnf5 install -y meson x264-devel rustc gtk4-devel gtk4-devel cargo openssl-devel
 
 
 dnf5 install -y envision-monado envision-wivrn
+dnf5 install -y wivrn-dashboard
 #dnf5 -y remove envision
 dnf5 -y copr disable bazzite-org/bazzite-multilib
 dnf5 -y install envision-nightly --allowerasing
