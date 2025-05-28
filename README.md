@@ -8,6 +8,8 @@ Also added a some programs, for personal use, might miss dependencies you need i
 
 The reason why Nvidia is the standard image is because thats what I use and set up first
 
+Includes envision with dependencies for Wired headsets (valve index is what I'm using) and WiVRN Dashboard for standalone headsets
+
 # Rebasing
 
 ## NVIDIA
