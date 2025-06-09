@@ -14,7 +14,7 @@ set -ouex pipefail
 # Add terra repo
 # Bazzite disabled this for some reason so lets re-enable it again
 dnf5 config-manager setopt terra.enabled=1 terra-extras.enabled=1 terra-mesa.enabled=1 fedora-multimedia.enabled=1
-
+dnf5 -y copr enable bazzite-org/bazzite-multilib
 # install krusader
 dnf5 install -y krusader
 
@@ -54,5 +54,6 @@ dnf5 -y copr disable derisis13/ani-cli
 #### Example for enabling a System Unit File
 
 dnf5 config-manager setopt terra.enabled=0 terra-extras.enabled=0 terra-mesa.enabled=0 fedora-multimedia.enabled=0
+dnf5 -y copr disable bazzite-org/bazzite-multilib
 
 systemctl enable podman.socket
