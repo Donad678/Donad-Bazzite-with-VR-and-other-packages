@@ -42,7 +42,8 @@ dnf5 -y copr disable derisis13/ani-cli
 # install windows 95
 # /tmp/install-scripts/install-windows95.sh
 
-
+# install telescope
+sudo dnf group install telescope
 
 # Use a COPR Example:
 #
