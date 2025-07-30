@@ -39,6 +39,9 @@ dnf5 -y copr disable derisis13/ani-cli
 # build envision
 /tmp/install-scripts/build-envision.sh
 
+# install lsfg-vk
+/tmp/install-scripts/lsfg-vk.sh
+
 # install windows 95
 # /tmp/install-scripts/install-windows95.sh
 
