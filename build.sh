@@ -46,7 +46,12 @@ dnf5 -y copr disable derisis13/ani-cli
 # /tmp/install-scripts/install-windows95.sh
 
 # install telescope
-dnf5 -y install telescope
+#dnf5 -y install telescope
+
+# install faugus launcher for UMU
+dnf5 -y copr enable faugus/faugus-launcher
+dnf5 -y install faugus-launcher
+dnf5 -y copr disable faugus/faugus-launcher
 
 # Use a COPR Example:
 #
