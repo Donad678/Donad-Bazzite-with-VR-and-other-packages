@@ -56,6 +56,9 @@ dnf5 -y copr disable faugus/faugus-launcher
 # install wine for Open Deck
 dnf5 -y install wine wine-mono
 
+# install docker for winboat
+/tmp/install-scripts/install-docker.sh
+
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
