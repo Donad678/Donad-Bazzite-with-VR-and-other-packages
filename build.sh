@@ -71,4 +71,4 @@ dnf5 -y install wine wine-mono
 dnf5 config-manager setopt terra.enabled=0 terra-extras.enabled=0 terra-mesa.enabled=0 fedora-multimedia.enabled=0
 dnf5 -y copr disable bazzite-org/bazzite-multilib
 
-systemctl enable podman.socket
+systemctl disable podman.socket
