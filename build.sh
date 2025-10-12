@@ -68,8 +68,6 @@ dnf5 -y install wine wine-mono
 
 #### Example for enabling a System Unit File
 
-dnf5 -y install python3-mutagen
-
 dnf5 config-manager setopt terra.enabled=0 terra-extras.enabled=0 terra-mesa.enabled=0 fedora-multimedia.enabled=0
 dnf5 -y copr disable bazzite-org/bazzite-multilib
 
