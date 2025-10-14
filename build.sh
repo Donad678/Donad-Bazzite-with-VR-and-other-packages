@@ -72,3 +72,5 @@ dnf5 config-manager setopt terra.enabled=0 terra-extras.enabled=0 terra-mesa.ena
 dnf5 -y copr disable bazzite-org/bazzite-multilib
 
 systemctl disable podman.socket
+
+ldconfig -v
