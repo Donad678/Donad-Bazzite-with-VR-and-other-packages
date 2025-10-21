@@ -21,4 +21,7 @@ curl -L -o "$FILENAME" "$DOWNLOAD_URL"
 echo "📦 Installing $FILENAME..."
 dnf5 install -y ./"$FILENAME"
 
+echo "Remove install File"
+rm -f ./"$FILENAME"
+
 echo "✅ Installation LSFG-VK installation complete."
