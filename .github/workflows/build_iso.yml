@@ -111,7 +111,7 @@ jobs:
       - name: Add Fedora ${{ matrix.major_version }} GPG key
         run: |
          sudo mkdir -p /etc/pki/rpm-gpg
-         curl -L -o /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-${{ matrix.major_version }}-x86_64 https://fedoraproject.org/fedora.gpg
+         sudo curl -L -o /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-${{ matrix.major_version }}-x86_64 https://fedoraproject.org/fedora.gpg
 
 
       - name: Build ISOs
