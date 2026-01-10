@@ -1,0 +1,7 @@
+#! /bin/bash
+# Force Proton Games to Use Alsa
+
+export WINEDLLOVERRIDES="winepulse.drv=d"
+export WINEALSA_CHANNELS=2
+
+exec "$@"

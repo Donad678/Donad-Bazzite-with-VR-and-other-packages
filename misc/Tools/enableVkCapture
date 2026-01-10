@@ -1,0 +1,8 @@
+#! /bin/bash
+# Makes the SteamOverlay Invisible to OBS and enables Vulkan Game Capture
+
+export VK_INSTANCE_LAYERS="VK_LAYER_OBS_vkcapture_32:VK_LAYER_OBS_vkcapture_64:VK_LAYER_VALVE_steam_overlay_32:VK_LAYER_VALVE_steam_overlay_64"
+export ENABLE_VK_LAYER_VALVE_steam_overlay_1=0
+export OBS_VKCAPTURE=1
+
+exec "$@"

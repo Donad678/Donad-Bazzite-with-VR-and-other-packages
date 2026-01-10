@@ -59,8 +59,11 @@ dnf5 -y install wine wine-mono
 # install ntfs2btrfs for easy file system conversion
 dnf5 -y install ntfs2btrfs
 
-# install docker for winboat
-/tmp/install-scripts/install-docker.sh
+# install docker for winboat / not necessary anymore, winboat supports podman now
+# /tmp/install-scripts/install-docker.sh
+
+# Copy Custom Scripts and Tools
+/tmp/install-scripts/install-custom-scripts.sh
 
 # Use a COPR Example:
 #
