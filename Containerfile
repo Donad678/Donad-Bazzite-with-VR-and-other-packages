@@ -1,4 +1,4 @@
-FROM ghcr.io/ublue-os/bazzite-gnome-nvidia:stable
+FROM ghcr.io/ublue-os/bazzite-gnome-nvidia-open:stable
 
 ## Other possible base images include:
 # FROM ghcr.io/ublue-os/bazzite:stable
