@@ -15,8 +15,8 @@ FROM ghcr.io/ublue-os/bazzite-nvidia-open:stable
 
 COPY / /tmp/
 
-RUN mkdir -p /var/lib/alternatives && \
-    /tmp/build.sh && \
-    /tmp/build_kde_additionals.sh && \
-    ostree container commit
+RUN mkdir -p /var/lib/alternatives && /tmp/build.sh
     
+RUN /tmp/build_kde_additionals.sh
+
+RUN ostree container commit
