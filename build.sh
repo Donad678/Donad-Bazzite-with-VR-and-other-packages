@@ -54,7 +54,7 @@ dnf5 -y install faugus-launcher
 dnf5 -y copr disable faugus/faugus-launcher
 
 # install wine for Open Deck
-dnf5 -y install wine wine-mono
+dnf5 -y install wine wine-mono wine-devel
 
 # install ntfs2btrfs for easy file system conversion
 dnf5 -y install ntfs2btrfs
