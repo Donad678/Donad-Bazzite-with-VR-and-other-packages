@@ -22,7 +22,7 @@ dnf5 install -y krusader
 #dnf5 install -y lact
 
 # install dotnet 8/9
-dnf5 install -y dotnet-sdk-8.0 dotnet-sdk-9.0
+dnf5 install -y dotnet-sdk-10.0 dotnet-sdk-9.0
 
 # Because I can, here is ani-cli, an anime watch tool for linux
 dnf5 -y copr enable derisis13/ani-cli
