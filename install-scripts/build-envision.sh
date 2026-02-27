@@ -14,6 +14,11 @@ dnf5 install -y mesa-libgbm-devel libglvnd-devel
 dnf5 install -y wivrn-dashboard
 #dnf5 -y remove envision
 dnf5 -y install envision-nightly --allowerasing
+
+# Install Monado binary for envision to make new installations easier
+dnf5 -y copr enable joviatrix/monado-git
+dnf5 -y install monado
+dnf5 -y copr disable joviatrix/monado-git
 #git clone https://gitlab.com/gabmus/envision/
 #cd envision
 #meson setup build -Dprefix="/usr" -Dprofile=development
