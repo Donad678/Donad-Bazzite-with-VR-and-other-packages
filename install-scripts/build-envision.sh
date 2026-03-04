@@ -21,8 +21,12 @@ dnf5 -y install monado
 dnf5 -y copr disable joviatrix/monado-git
 dnf5 -y install xr-hardware
 
-
+# Set nice for monado
 /usr/bin/setcap CAP_SYS_NICE=eip /usr/bin/monado-service
+
+# Edit Envision .desktop to force restart headset on start
+desktop-file-edit --set-exec="/usr/sbin/forceRestartIndex envision" "/usr/share/applications/org.gabmus.envision.Devel.desktop"
+
 #Old build process removed
 #git clone https://gitlab.com/gabmus/envision/
 #cd envision
