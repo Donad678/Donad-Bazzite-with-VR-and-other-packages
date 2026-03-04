@@ -35,3 +35,13 @@ Includes envision with dependencies for Wired headsets (valve index is what I'm 
 You can also download the ISO from the latest build artifact for a fresh install
 
 https://github.com/Donad678/Donad-Bazzite-with-VR-and-other-packages/actions/workflows/build_iso.yml
+
+
+# Credits
+
+Some files are from other repositories and cloned here for easier install, credit is to the original devs
+
+[udev rule for valve index](https://github.com/MiguVT/fixvr/tree/main)
+[Virtual Here Server](https://www.virtualhere.com)
+[Lighthouse manager
+](https://github.com/ShayBox/Lighthouse)
