@@ -29,8 +29,6 @@ dnf5 -y install xr-hardware
 
 # fix index on boot
 install -m 644 -o root -g root "/tmp/misc/udev/99-valve-index-reboot.rules" "/etc/udev/rules.d/99-valve-index-reboot.rules"
-udevadm control --reload-rules
-udevadm trigger --subsystem-match=usb --subsystem-match=hidraw
 
 #Old build process removed
 #git clone https://gitlab.com/gabmus/envision/
