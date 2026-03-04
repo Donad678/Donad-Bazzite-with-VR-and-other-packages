@@ -28,7 +28,9 @@ dnf5 -y install xr-hardware
 #desktop-file-edit --set-key="Exec" --set-value="/usr/bin/forceRestartIndex envision" "/usr/share/applications/org.gabmus.envision.Devel.desktop"
 
 # fix index on boot
-curl -fsSL https://raw.githubusercontent.com/MiguVT/fixvr/main/src/install.sh | bash
+install -m 644 -o root -g root "/tmp/misc/udev/99-valve-index-reboot.rules" "/etc/udev/rules.d/99-valve-index-reboot.rules"
+udevadm control --reload-rules
+udevadm trigger --subsystem-match=usb --subsystem-match=hidraw
 
 #Old build process removed
 #git clone https://gitlab.com/gabmus/envision/
