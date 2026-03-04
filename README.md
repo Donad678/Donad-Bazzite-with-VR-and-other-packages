@@ -42,6 +42,8 @@ https://github.com/Donad678/Donad-Bazzite-with-VR-and-other-packages/actions/wor
 Some files are from other repositories and cloned here for easier install, credit is to the original devs
 
 [udev rule for valve index](https://github.com/MiguVT/fixvr/tree/main)
+
 [Virtual Here Server](https://www.virtualhere.com)
+
 [Lighthouse manager
 ](https://github.com/ShayBox/Lighthouse)
