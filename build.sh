@@ -29,7 +29,6 @@ dnf5 -y copr enable derisis13/ani-cli
 dnf5 -y install ani-cli
 dnf5 -y copr disable derisis13/ani-cli
 
-
 # Install BS-Manager for easier Beat Saber modding
 # /tmp/install-scripts/install-bsmanager.sh
 

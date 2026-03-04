@@ -19,6 +19,7 @@ dnf5 -y install envision-nightly --allowerasing
 dnf5 -y copr enable joviatrix/monado-git
 dnf5 -y install monado
 dnf5 -y copr disable joviatrix/monado-git
+dnf5 -y install xr-hardware
 
 #Old build process removed
 #git clone https://gitlab.com/gabmus/envision/
