@@ -21,6 +21,8 @@ dnf5 -y install monado
 dnf5 -y copr disable joviatrix/monado-git
 dnf5 -y install xr-hardware
 
+
+/usr/bin/setcap CAP_SYS_NICE=eip /usr/bin/monado-service
 #Old build process removed
 #git clone https://gitlab.com/gabmus/envision/
 #cd envision
