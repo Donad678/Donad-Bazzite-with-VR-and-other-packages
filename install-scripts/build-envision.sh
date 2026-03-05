@@ -37,6 +37,8 @@ unzip /tmp/xrizer.zip -d /tmp/xrizer-extract
 mkdir -p /usr/lib/xrizer
 cp -rv /tmp/xrizer-extract/xrizer/bin /usr/lib/xrizer/
 ls -R /usr/lib/xrizer
+chmod -R 755 /usr/lib/xrizer
+chown -R root:root /usr/lib/xrizer
 rm -rf /tmp/xrizer-extract /tmp/xrizer.zip
 
 #Old build process removed
