@@ -35,7 +35,8 @@ mkdir -p /tmp/xrizer-extract
 curl -Lo /tmp/xrizer.zip https://nightly.link/Supreeeme/xrizer/workflows/ci/main/xrizer-nightly-release.zip
 unzip /tmp/xrizer.zip -d /tmp/xrizer-extract
 mkdir -p /usr/lib/xrizer
-cp -r /tmp/xrizer-extract/xrizer/bin/* /usr/lib/xrizer/
+cp -rv /tmp/xrizer-extract/xrizer/bin /usr/lib/xrizer/
+ls -R /usr/lib/xrizer
 rm -rf /tmp/xrizer-extract /tmp/xrizer.zip
 
 #Old build process removed
