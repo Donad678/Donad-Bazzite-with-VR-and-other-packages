@@ -30,6 +30,14 @@ dnf5 -y install xr-hardware
 # fix index on boot
 install -m 644 -o root -g root "/tmp/misc/udev/60-valve-index-reboot.rules" "/etc/udev/rules.d/60-valve-index-reboot.rules"
 
+# install xrizer
+mkdir -p /tmp/xrizer-extract
+curl -Lo /tmp/xrizer.zip https://nightly.link/Supreeeme/xrizer/workflows/ci/main/xrizer-nightly-release.zip
+unzip /tmp/xrizer.zip -d /tmp/xrizer-extract
+mkdir -p /usr/lib/xrizer
+cp -r /tmp/xrizer-extract/xrizer/bin/* /usr/lib/xrizer/
+rm -rf /tmp/xrizer-extract /tmp/xrizer.zip
+
 #Old build process removed
 #git clone https://gitlab.com/gabmus/envision/
 #cd envision
