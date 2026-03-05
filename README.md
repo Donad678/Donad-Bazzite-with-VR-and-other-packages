@@ -47,3 +47,5 @@ Some files are from other repositories and cloned here for easier install, credi
 
 [Lighthouse manager
 ](https://github.com/ShayBox/Lighthouse)
+
+[xrizer](https://github.com/Supreeeme/xrizer)
