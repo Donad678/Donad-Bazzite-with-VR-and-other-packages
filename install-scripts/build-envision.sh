@@ -28,7 +28,7 @@ dnf5 -y install xr-hardware
 #desktop-file-edit --set-key="Exec" --set-value="/usr/bin/forceRestartIndex envision" "/usr/share/applications/org.gabmus.envision.Devel.desktop"
 
 # fix index on boot
-install -m 644 -o root -g root "/tmp/misc/udev/99-valve-index-reboot.rules" "/etc/udev/rules.d/99-valve-index-reboot.rules"
+install -m 644 -o root -g root "/tmp/misc/udev/60-valve-index-reboot.rules" "/etc/udev/rules.d/60-valve-index-reboot.rules"
 
 #Old build process removed
 #git clone https://gitlab.com/gabmus/envision/
