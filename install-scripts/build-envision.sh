@@ -44,9 +44,10 @@ rm -rf /tmp/xrizer-extract /tmp/xrizer.zip
 # install wayvr by unpacking appimage
 mkdir -p /tmp/wayvr
 cd /tmp/wayvr/
-curl -Lo wayvr.zip https://nightly.link/wlx-team/wayvr/workflows/build-appimage/main/WayVR-main-x86_64.AppImage.zip
-unzip wayvr.zip
-mv WayVR-x86_64.AppImage wayvr.appimage
+mv /tmp/misc/appimages/wayvr.appimage ./
+#curl -Lo wayvr.zip https://nightly.link/wlx-team/wayvr/workflows/build-appimage/main/WayVR-main-x86_64.AppImage.zip
+#unzip wayvr.zip
+#mv WayVR-x86_64.AppImage wayvr.appimage
 chmod +x wayvr.appimage
 ./wayvr.appimage --appimage-extract
 cp -rfnv ./squashfs-root/usr /
