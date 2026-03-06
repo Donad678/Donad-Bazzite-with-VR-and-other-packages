@@ -50,7 +50,7 @@ mv WayVR-x86_64.AppImage wayvr.appimage
 chmod +x wayvr.appimage
 ./wayvr.appimage --appimage-extract
 cp -rfnv ./squashfs-root/usr /
-cd
+cd /tmp
 rm -r -f /tmp/wayvr
 
 #Old build process removed
