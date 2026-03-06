@@ -41,6 +41,18 @@ chmod -R 755 /usr/lib/xrizer
 chown -R root:root /usr/lib/xrizer
 rm -rf /tmp/xrizer-extract /tmp/xrizer.zip
 
+# install wayvr by unpacking appimage
+mkdir -p /tmp/wayvr
+cd /tmp/wayvr/
+curl -Lo wayvr.zip https://nightly.link/wlx-team/wayvr/workflows/build-appimage/main/WayVR-main-x86_64.AppImage.zip
+unzip wayvr.zip
+mv WayVR-x86_64.AppImage wayvr.appimage
+chmod +x wayvr.appimage
+./wayvr.appimage --appimage-extract
+cp -rfnv ./squashfs-root/usr /
+cd
+rm -r -f /tmp/wayvr
+
 #Old build process removed
 #git clone https://gitlab.com/gabmus/envision/
 #cd envision
