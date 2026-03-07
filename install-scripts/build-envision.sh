@@ -64,6 +64,8 @@ export CARGO_HOME=/tmp/cargo_home
 cargo xbuild --release
 mkdir -p /usr/lib/xrizer/bin/linux64
 mv /tmp/xrizer-build/xrizer/target/release/libxrizer.so /usr/lib/xrizer/bin/linux64/vrclient.so
+mv /tmp/xrizer-build/xrizer/target/release/bin/version.txt /usr/lib/xrizer/bin/version.txt
+mv /tmp/misc/other/openvrpaths.vrpath /usr/lib/xrizer/openvrpaths.vrpath
 cd /tmp
 rm -r -f /tmp/xrizer-build
 
