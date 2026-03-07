@@ -10,6 +10,19 @@ dnf5 install -y --setopt=tsflags=noscripts cmake eigen3-devel gcc-c++ git-lfs gl
 dnf5 install -y meson x264-devel rustc gtk4-devel gtk4-devel cargo openssl-devel libadwaita-devel vte-2.91-gtk4 clang-devel libusb1 libusb1-devel onnx-devel onnx-libs onnxruntime onnxruntime-devel
 dnf5 install -y mesa-libgbm-devel libglvnd-devel
 
+# install wayvr by unpacking appimage
+mkdir -p /tmp/wayvr
+cd /tmp/wayvr/
+#mv /tmp/misc/appimages/wayvr.appimage ./
+curl -Lo wayvr.zip https://nightly.link/wlx-team/wayvr/workflows/build-appimage/main/WayVR-main-x86_64.AppImage.zip
+unzip wayvr.zip
+mv WayVR-x86_64.AppImage wayvr.appimage
+chmod +x wayvr.appimage
+./wayvr.appimage --appimage-extract
+cp -rfnv ./squashfs-root/usr /
+cd /tmp
+rm -r -f /tmp/wayvr
+
 #dnf5 install -y envision-monado envision-wivrn
 dnf5 install -y wivrn-dashboard
 #dnf5 -y remove envision
@@ -53,19 +66,6 @@ mkdir -p /usr/lib/xrizer/bin/linux64
 mv /tmp/xrizer-build/xrizer/target/release/libxrizer.so /usr/lib/xrizer/bin/linux64/vrclient.so
 cd /tmp
 rm -r -f /tmp/xrizer-build
-
-# install wayvr by unpacking appimage
-mkdir -p /tmp/wayvr
-cd /tmp/wayvr/
-#mv /tmp/misc/appimages/wayvr.appimage ./
-curl -Lo wayvr.zip https://nightly.link/wlx-team/wayvr/workflows/build-appimage/main/WayVR-main-x86_64.AppImage.zip
-unzip wayvr.zip
-mv WayVR-x86_64.AppImage wayvr.appimage
-chmod +x wayvr.appimage
-./wayvr.appimage --appimage-extract
-cp -rfnv ./squashfs-root/usr /
-cd /tmp
-rm -r -f /tmp/wayvr
 
 #Old build process removed
 #git clone https://gitlab.com/gabmus/envision/
