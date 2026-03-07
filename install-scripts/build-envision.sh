@@ -46,6 +46,8 @@ mkdir -p /tmp/xrizer-build
 cd /tmp/xrizer-build
 git clone https://github.com/Supreeeme/xrizer.git
 cd /tmp/xrizer-build/xrizer
+mkdir -p /tmp/cargo_home
+export CARGO_HOME=/tmp/cargo_home
 cargo xbuild --release
 mkdir -p /usr/lib/xrizer/bin/linux64
 mv /tmp/xrizer-build/xrizer/target/release/libxrizer.so /usr/lib/xrizer/bin/linux64/vrclient.so
