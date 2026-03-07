@@ -16,10 +16,21 @@ dnf5 install -y wivrn-dashboard
 dnf5 -y install envision-nightly --allowerasing
 
 # Install Monado binary for envision to make new installations easier
-dnf5 -y copr enable joviatrix/monado-git
-dnf5 -y install monado
-dnf5 -y copr disable joviatrix/monado-git
-dnf5 -y install xr-hardware
+#dnf5 -y copr enable joviatrix/monado-git
+#dnf5 -y install monado
+#dnf5 -y copr disable joviatrix/monado-git
+#dnf5 -y install xr-hardware
+
+#Compile monado ourselves
+mkdir -p /tmp/monado-build
+cd /tmp/monado-build
+git clone https://gitlab.freedesktop.org/monado/monado.git
+cd /tmp/monado-build/monado
+mkdir /tmp/monado-build/monado/build
+cd /tmp/monado-build/monado/build
+cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles"
+cmake --build .
+cmake --build . --target install
 
 # Set nice for monado
 /usr/bin/setcap CAP_SYS_NICE=eip /usr/bin/monado-service
@@ -31,23 +42,23 @@ desktop-file-edit --set-key="Exec" --set-value="/usr/bin/forceRestartIndex envis
 install -m 644 -o root -g root "/tmp/misc/udev/60-valve-index-reboot.rules" "/etc/udev/rules.d/60-valve-index-reboot.rules"
 
 # install xrizer
-mkdir -p /tmp/xrizer-extract
-curl -Lo /tmp/xrizer.zip https://nightly.link/Supreeeme/xrizer/workflows/ci/main/xrizer-nightly-release.zip
-unzip /tmp/xrizer.zip -d /tmp/xrizer-extract
-mkdir -p /usr/lib/xrizer
-cp -rv /tmp/xrizer-extract/xrizer/bin /usr/lib/xrizer/
-ls -R /usr/lib/xrizer
-chmod -R 755 /usr/lib/xrizer
-chown -R root:root /usr/lib/xrizer
-rm -rf /tmp/xrizer-extract /tmp/xrizer.zip
+mkdir -p /tmp/xrizer-build
+cd /tmp/xrizer-build
+git clone https://github.com/Supreeeme/xrizer.git
+cd /tmp/xrizer-build/xrizer
+cargo xbuild --release
+mkdir -p /usr/lib/xrizer/bin/linux64
+mv /tmp/xrizer-build/xrizer/target/release/libxrizer.so /usr/lib/xrizer/bin/linux64/vrclient.so
+cd /tmp
+rm -r -f /tmp/xrizer-build
 
 # install wayvr by unpacking appimage
 mkdir -p /tmp/wayvr
 cd /tmp/wayvr/
-mv /tmp/misc/appimages/wayvr.appimage ./
-#curl -Lo wayvr.zip https://nightly.link/wlx-team/wayvr/workflows/build-appimage/main/WayVR-main-x86_64.AppImage.zip
-#unzip wayvr.zip
-#mv WayVR-x86_64.AppImage wayvr.appimage
+#mv /tmp/misc/appimages/wayvr.appimage ./
+curl -Lo wayvr.zip https://nightly.link/wlx-team/wayvr/workflows/build-appimage/main/WayVR-main-x86_64.AppImage.zip
+unzip wayvr.zip
+mv WayVR-x86_64.AppImage wayvr.appimage
 chmod +x wayvr.appimage
 ./wayvr.appimage --appimage-extract
 cp -rfnv ./squashfs-root/usr /
