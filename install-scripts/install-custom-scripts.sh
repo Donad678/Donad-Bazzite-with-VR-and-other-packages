@@ -7,3 +7,6 @@ cp -rv /tmp/misc/Tools/* /usr/bin
 # https://github.com/ShayBox/Lighthouse
 
 # The others I wrote myself
+
+# Copy systemd-tmpfiles
+cp -rv /tmp/misc/systemd-tmpfiles/* /usr/lib/tmpfiles.d
