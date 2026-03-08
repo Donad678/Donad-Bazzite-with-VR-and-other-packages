@@ -1,6 +1,7 @@
 {
 	"jsonid": "vrpathreg",
 	"runtime": [
+		"/opt/xrizer",
 		"/usr/lib/xrizer"
 	],
 	"version": 1
