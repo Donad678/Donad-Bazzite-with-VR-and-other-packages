@@ -131,7 +131,7 @@ jobs:
           REGISTRY_USER: ${{ github.actor }}
           REGISTRY_PASSWORD: ${{ github.token }}
         with:
-          registry: ${{ steps.registry_case.outputs.lowercase }}
+          registry: ghcr.io/donad678
           image: ${{ steps.image_case.outputs.lowercase }}
           tags: ${{ steps.metadata.outputs.tags }}
           username: ${{ env.REGISTRY_USER }}
