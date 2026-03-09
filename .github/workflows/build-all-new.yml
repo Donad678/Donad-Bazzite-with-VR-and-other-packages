@@ -110,7 +110,7 @@ jobs:
         uses: redhat-actions/buildah-build@v2
         with:
           containerfiles: |
-            ./Containerfile_kde
+            ./Containerfile
           build-args: |
             BASE_IMAGE=${{ matrix.base }}
             IS_KDE=${{ matrix.is_kde }}
