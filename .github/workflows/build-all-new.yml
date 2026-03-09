@@ -64,38 +64,36 @@ jobs:
         id: date
         run: echo "date=$(date -u +%Y\-%m\-%d\T%H\:%M\:%S\Z)" >> $GITHUB_OUTPUT
 
-      # 1. Lowercase Registry/Image names first to avoid push errors
-      - name: Lowercase Registry
-        id: registry_case
-        uses: ASzc/change-string-case-action@v6
-        with:
-          string: ${{ env.IMAGE_REGISTRY }}
-
-      - name: Lowercase Image Name
-        id: image_case
-        uses: ASzc/change-string-case-action@v6
-        with:
-          string: ${{ matrix.image_name }}
-
-      # 2. Setup Metadata using Matrix variables
       - name: Image Metadata
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@030e881283bb7a6894de51c315a6bfe6a94e05cf # v6.0.0
         id: metadata
         with:
-          images: |
-            ${{ matrix.image_name }}
+          # This generates all the tags for your image, you can add custom tags here too!
+          # By default, it should generate "latest" and "latest.(date here)".
           tags: |
             type=raw,value=latest
             type=raw,value=latest.{{date 'YYYYMMDD'}}
             type=raw,value={{date 'YYYYMMDD'}}
             type=sha,enable=${{ github.event_name == 'pull_request' }}
+            type=ref,event=pr
           labels: |
-            io.artifacthub.package.readme-url=https://raw.githubusercontent.com/${{ github.repository_owner }}/donad-bazzite-kde/refs/heads/main/README.md
+            io.artifacthub.package.readme-url=https://raw.githubusercontent.com/${{ github.repository_owner }}/${{ matrix.image_name }}/refs/heads/main/README.md
             org.opencontainers.image.created=${{ steps.date.outputs.date }}
             org.opencontainers.image.description=${{ matrix.image_desc }}
+            org.opencontainers.image.documentation=https://raw.githubusercontent.com/${{ github.repository_owner }}/${{ matrix.image_name }}/refs/heads/main/README.md
+            org.opencontainers.image.source=https://github.com/${{ github.repository_owner }}/${{ matrix.image_name }}/blob/main/Containerfile
             org.opencontainers.image.title=${{ matrix.image_name }}
-            org.opencontainers.image.source=https://github.com/${{ github.repository_owner }}/donad-bazzite-kde
+            org.opencontainers.image.url=https://github.com/${{ github.repository_owner }}/${{ matrix.image_name }}
+            org.opencontainers.image.vendor=${{ github.repository_owner }}
+            org.opencontainers.image.version=latest
+            io.artifacthub.package.deprecated=false
+            io.artifacthub.package.keywords=bootc,ublue,universal-blue
+            io.artifacthub.package.license=Apache-2.0
+            io.artifacthub.package.logo-url=${{ env.ARTIFACTHUB_LOGO_URL }}
+            io.artifacthub.package.prerelease=false
             containers.bootc=1
+          sep-tags: " "
+          sep-annotations: " "
 
       # 3. Build the Image
       - name: Build Image
@@ -108,20 +106,35 @@ jobs:
             BASE_IMAGE=${{ matrix.base }}
             IS_KDE=${{ matrix.is_kde }}
           # Build it with the full name immediately
-          image: donad678/${{ matrix.image_name }}
+          image: ${{ matrix.image_name }}
           tags: ${{ steps.metadata.outputs.tags }}
           labels: ${{ steps.metadata.outputs.labels }}
           oci: true
 
+      # These `if` statements are so that pull requests for your custom images do not make it publish any packages under your name without you knowing
+      # They also check if the runner is on the default branch so that things like the merge queue (if you enable it), are going to work
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
+        uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2 # v4.0.0
         if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # 4. Push the Image
+      # Workaround bug where capital letters in your GitHub username make it impossible to push to GHCR.
+      # https://github.com/macbre/push-to-ghcr/issues/12
+      - name: Lowercase Registry
+        id: registry_case
+        uses: ASzc/change-string-case-action@v6
+        with:
+          string: ${{ env.IMAGE_REGISTRY }}
+
+      - name: Lowercase Image
+        id: image_case
+        uses: ASzc/change-string-case-action@v6
+        with:
+          string: ${{ matrix.image_name }}
+
       - name: Push To GHCR
         uses: redhat-actions/push-to-registry@5ed88d269cf581ea9ef6dd6806d01562096bee9c # v2
         if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
@@ -130,13 +143,11 @@ jobs:
           REGISTRY_USER: ${{ github.actor }}
           REGISTRY_PASSWORD: ${{ github.token }}
         with:
-          # registry is JUST the server
-          registry: ghcr.io
-          # image is the FULL PATH: username/image-name
-          image: donad678/${{ matrix.image_name }}
+          registry: ${{ steps.registry_case.outputs.lowercase }}
+          image: ${{ matrix.image_name }}
           tags: ${{ steps.metadata.outputs.tags }}
-          username: ${{ github.actor }}
-          password: ${{ github.token }}
+          username: ${{ env.REGISTRY_USER }}
+          password: ${{ env.REGISTRY_PASSWORD }}
 
       # 5. Sign the Image
       - name: Install Cosign
