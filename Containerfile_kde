@@ -4,6 +4,8 @@ ARG IS_KDE=false
 
 FROM ${BASE_IMAGE}
 
+ARG IS_KDE
+
 ## Other possible base images include:
 # FROM ghcr.io/ublue-os/bazzite:stable
 # FROM ghcr.io/ublue-os/bluefin-nvidia:stable
@@ -52,5 +54,10 @@ RUN if [ "${IS_KDE}" == "true" ]; then \
 RUN dnf5 config-manager setopt terra.enabled=0 terra-extras.enabled=0 terra-mesa.enabled=0 fedora-multimedia.enabled=0 && \
     dnf5 -y copr disable bazzite-org/bazzite-multilib && \
     systemctl disable podman.socket
+
+# --- LAYER: Cleanup ---
+# We delete /tmp and clear dnf cache to save space
+RUN rm -rf /tmp/* && \
+    dnf5 clean all
 
 RUN ostree container commit
