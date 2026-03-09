@@ -1,4 +1,8 @@
-FROM ghcr.io/ublue-os/bazzite-nvidia-open:stable
+# This must be at the very top, before FROM
+ARG BASE_IMAGE=ghcr.io/ublue-os/bazzite-nvidia-open:stable
+ARG IS_KDE=false
+
+FROM ${BASE_IMAGE}
 
 ## Other possible base images include:
 # FROM ghcr.io/ublue-os/bazzite:stable
@@ -15,8 +19,38 @@ FROM ghcr.io/ublue-os/bazzite-nvidia-open:stable
 
 COPY / /tmp/
 
-RUN mkdir -p /var/lib/alternatives && /tmp/build.sh
-    
-RUN /tmp/build_kde_additionals.sh
+RUN mkdir -p /var/lib/alternatives
+
+RUN dnf5 config-manager setopt terra.enabled=1 terra-extras.enabled=1 terra-mesa.enabled=1 fedora-multimedia.enabled=1 && \
+    dnf5 -y copr enable bazzite-org/bazzite-multilib && \
+    dnf5 -y copr enable derisis13/ani-cli && \
+    dnf5 -y copr enable faugus/faugus-launcher
+
+RUN dnf5 install -y \
+    dotnet-sdk-10.0 \
+    dotnet-sdk-9.0 \
+    wine wine-mono wine-devel \
+    ntfs2btrfs \
+    krusader
+
+RUN dnf5 install -y \
+    ani-cli \
+    faugus-launcher
+
+RUN /tmp/install-scripts/install-virtualhere-server.sh
+RUN /tmp/install-scripts/build-envision.sh
+RUN /tmp/install-scripts/lsfg-vk.sh
+RUN /tmp/install-scripts/install-custom-scripts.sh
+
+RUN if [ "${IS_KDE}" == "true" ]; then \
+        echo "KDE detected, running KDE additions..."; \
+        /tmp/build_kde_additionals.sh; \
+    else \
+        echo "Non-KDE image, skipping KDE additions."; \
+    fi
+
+RUN dnf5 config-manager setopt terra.enabled=0 terra-extras.enabled=0 terra-mesa.enabled=0 fedora-multimedia.enabled=0 && \
+    dnf5 -y copr disable bazzite-org/bazzite-multilib && \
+    systemctl disable podman.socket
 
 RUN ostree container commit
