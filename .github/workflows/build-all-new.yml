@@ -39,17 +39,17 @@ jobs:
             is_kde: "true"
           - variant: nvidia-gnome
             base: ghcr.io/ublue-os/bazzite-gnome-nvidia-open:stable
-            image_name: "donad-bazzite-kde"
+            image_name: "donad-bazzite-gnome"
             image_desc: "Custom Bazzite Gnome Optimized for NVIDIA Hardware"
             is_kde: "false"
           - variant: main-gnome
             base: ghcr.io/ublue-os/bazzite-gnome:stable
-            image_name: "donad-bazzite-kde-mesa"
+            image_name: "donad-bazzite-gnome-mesa"
             image_desc: "Custom Bazzite Gnome for AMD and Intel Systems"
             is_kde: "false"
           - variant: deck-gnome
             base: ghcr.io/ublue-os/bazzite-deck-gnome:stable
-            image_name: "donad-bazzite-kde-deck"
+            image_name: "donad-bazzite-gnome-deck"
             image_desc: "Custom Bazzite Gnome optimized for Steam Deck and Handhelds"
             is_kde: "false"
 
