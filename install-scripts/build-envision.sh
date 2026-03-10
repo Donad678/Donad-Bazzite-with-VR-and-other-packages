@@ -68,7 +68,7 @@ mv /tmp/xrizer-build/xrizer/target/release/bin/version.txt /usr/lib/xrizer/bin/v
 mv /tmp/misc/other/openvrpaths.vrpath /usr/lib/xrizer/openvrpaths.vrpath
 cd /tmp
 rm -r -f /tmp/xrizer-build
-
+rm -r -f /tmp/cargo_home
 #Old build process removed
 #git clone https://gitlab.com/gabmus/envision/
 #cd envision
