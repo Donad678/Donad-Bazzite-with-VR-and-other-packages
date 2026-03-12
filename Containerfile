@@ -6,7 +6,8 @@ ARG IS_KDE=false
 FROM ${BASE_IMAGE} AS builder
 
 COPY / /tmp/
-
+RUN dnf5 config-manager setopt terra.enabled=1 terra-extras.enabled=1 terra-mesa.enabled=1 fedora-multimedia.enabled=1 && \
+    dnf5 -y copr enable bazzite-org/bazzite-multilib
 RUN /tmp/install-scripts/build-envision.sh
 
 # Build final image
