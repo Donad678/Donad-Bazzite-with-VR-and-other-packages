@@ -3,12 +3,12 @@ ARG BASE_IMAGE=fakeImage
 ARG IS_KDE=false
 
 # Build applications without polluting final image
-FROM ${BASE_IMAGE} AS builder
+#FROM ${BASE_IMAGE} AS builder
 
-COPY / /tmp/
-RUN dnf5 config-manager setopt terra.enabled=1 terra-extras.enabled=1 terra-mesa.enabled=1 fedora-multimedia.enabled=1 && \
-    dnf5 -y copr enable bazzite-org/bazzite-multilib
-RUN /tmp/install-scripts/build-envision.sh
+#COPY / /tmp/
+#RUN dnf5 config-manager setopt terra.enabled=1 terra-extras.enabled=1 terra-mesa.enabled=1 fedora-multimedia.enabled=1 && \
+#    dnf5 -y copr enable bazzite-org/bazzite-multilib
+#RUN /tmp/install-scripts/build-envision.sh
 
 # Build final image
 
@@ -32,7 +32,7 @@ ARG IS_KDE
 COPY install-scripts/ /tmp/install-scripts/
 COPY misc/ /tmp/misc/
 COPY *.sh /tmp/
-COPY --from=builder /tmp/staging/ /tmp/from-builder/
+#COPY --from=builder /tmp/staging/ /tmp/from-builder/
 
 RUN mkdir -p /var/lib/alternatives
 
@@ -56,6 +56,7 @@ RUN dnf5 install -y \
     faugus-launcher
 
 RUN /tmp/install-scripts/install-virtualhere-server.sh
+RUN /tmp/install-scripts/build-envision.sh
 RUN /tmp/install-scripts/install-envision.sh
 RUN /tmp/install-scripts/lsfg-vk.sh
 RUN /tmp/install-scripts/install-custom-scripts.sh

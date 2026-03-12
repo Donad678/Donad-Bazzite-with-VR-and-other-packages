@@ -8,7 +8,9 @@ dnf5 install -y --setopt=tsflags=noscripts cmake eigen3-devel gcc-c++ git-lfs gl
 dnf5 install -y meson x264-devel rustc gtk4-devel gtk4-devel cargo openssl-devel libadwaita-devel vte-2.91-gtk4 clang-devel libusb1 libusb1-devel onnx-devel onnx-libs onnxruntime onnxruntime-devel
 dnf5 install -y mesa-libgbm-devel libglvnd-devel
 
-STAGING_DIR="/tmp/staging"
+#STAGING_DIR="/tmp/staging"
+STAGING_DIR="/"
+
 mkdir -p $STAGING_DIR/usr/lib/xrizer/bin/linux64
 
 # install wayvr by unpacking appimage
@@ -21,7 +23,7 @@ mv WayVR-x86_64.AppImage wayvr.appimage
 chmod +x wayvr.appimage
 ./wayvr.appimage --appimage-extract
 cp -rfnv ./squashfs-root/usr /
-cp -rfnv ./squashfs-root/usr $STAGING_DIR/
+#cp -rfnv ./squashfs-root/usr $STAGING_DIR/
 cd /tmp
 rm -r -f /tmp/wayvr
 
