@@ -6,7 +6,7 @@ dnf5 install -y wivrn-dashboard
 #dnf5 -y remove envision
 dnf5 -y install envision-nightly --allowerasing
 
-dnf5 install -y glslc libusb1 onnx-libs onnxruntime
+dnf5 install -y glslc libusb1 onnx-libs onnxruntime opencv sdl3 libbsd x264-libs bluez-libs vulkan-loader
 # Install Monado binary for envision to make new installations easier
 #dnf5 -y copr enable joviatrix/monado-git
 #dnf5 -y install monado
