@@ -34,7 +34,7 @@ git clone https://gitlab.freedesktop.org/monado/monado.git
 cd /tmp/monado-build/monado
 mkdir /tmp/monado-build/monado/build
 cd /tmp/monado-build/monado/build
-cmake .. -DCMAKE_INSTALL_PREFIX=$STAGING_DIR/usr -DCMAKE_BUILD_TYPE=RelWithDebInfo -G "Unix Makefiles"
+cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=RelWithDebInfo -G "Unix Makefiles"
 cmake --build .
 cmake --build . --target install
 
