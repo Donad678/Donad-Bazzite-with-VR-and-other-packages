@@ -47,9 +47,10 @@ RUN dnf5 config-manager setopt terra.enabled=1 terra-extras.enabled=1 terra-mesa
 RUN dnf5 install -y \
     dotnet-sdk-10.0 \
     dotnet-sdk-9.0 \
-    wine wine-mono wine-devel \
     ntfs2btrfs \
     krusader
+
+#RUN dnf5 install -y wine wine-mono wine-devel
 
 RUN dnf5 install -y \
     ani-cli \
