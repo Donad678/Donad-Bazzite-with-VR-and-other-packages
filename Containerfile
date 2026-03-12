@@ -32,9 +32,12 @@ ARG IS_KDE
 COPY install-scripts/ /tmp/install-scripts/
 COPY misc/ /tmp/misc/
 COPY *.sh /tmp/
-COPY --from=builder /tmp/staging/usr/ /usr/
+COPY --from=builder /tmp/staging/ /tmp/from-builder/
 
 RUN mkdir -p /var/lib/alternatives
+
+RUN cp -rnv /tmp/from-builder/usr/* /usr/ && \
+    rm -rf /tmp/from-builder
 
 RUN dnf5 config-manager setopt terra.enabled=1 terra-extras.enabled=1 terra-mesa.enabled=1 fedora-multimedia.enabled=1 && \
     dnf5 -y copr enable bazzite-org/bazzite-multilib && \
