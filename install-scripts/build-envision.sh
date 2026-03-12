@@ -11,7 +11,7 @@ dnf5 install -y mesa-libgbm-devel libglvnd-devel
 #STAGING_DIR="/tmp/staging"
 STAGING_DIR="/"
 
-mkdir -p $STAGING_DIR/usr/lib/xrizer/bin/linux64
+mkdir -p /usr/lib/xrizer/bin/linux64
 
 # install wayvr by unpacking appimage
 mkdir -p /tmp/wayvr
