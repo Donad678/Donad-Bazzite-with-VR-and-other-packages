@@ -1,6 +1,15 @@
 # This must be at the very top, before FROM
-ARG BASE_IMAGE=ghcr.io/ublue-os/bazzite-nvidia-open:stable
+ARG BASE_IMAGE=fakeImage
 ARG IS_KDE=false
+
+# Build applications without polluting final image
+FROM ${BASE_IMAGE} AS builder
+
+COPY / /tmp/
+
+RUN /tmp/install-scripts/build-envision.sh
+
+# Build final image
 
 FROM ${BASE_IMAGE}
 
@@ -19,7 +28,10 @@ ARG IS_KDE
 ## make modifications desired in your image and install packages by modifying the build.sh script
 ## the following RUN directive does all the things required to run "build.sh" as recommended.
 
-COPY / /tmp/
+COPY install-scripts/ /tmp/install-scripts/
+COPY misc/ /tmp/misc/
+COPY *.sh /tmp/
+COPY --from=builder /tmp/staging/usr/ /usr/
 
 RUN mkdir -p /var/lib/alternatives
 
@@ -40,7 +52,7 @@ RUN dnf5 install -y \
     faugus-launcher
 
 RUN /tmp/install-scripts/install-virtualhere-server.sh
-RUN /tmp/install-scripts/build-envision.sh
+RUN /tmp/install-scripts/install-envision.sh
 RUN /tmp/install-scripts/lsfg-vk.sh
 RUN /tmp/install-scripts/install-custom-scripts.sh
 
