@@ -8,10 +8,10 @@ dnf5 install -y --setopt=tsflags=noscripts cmake eigen3-devel gcc-c++ git-lfs gl
 dnf5 install -y meson x264-devel rustc gtk4-devel gtk4-devel cargo openssl-devel libadwaita-devel vte-2.91-gtk4 clang-devel libusb1 libusb1-devel onnx-devel onnx-libs onnxruntime onnxruntime-devel
 dnf5 install -y mesa-libgbm-devel libglvnd-devel
 
-#STAGING_DIR="/tmp/staging"
-STAGING_DIR="/"
+STAGING_DIR="/tmp/staging"
+#STAGING_DIR=""
 
-mkdir -p /usr/lib/xrizer/bin/linux64
+mkdir -p $STAGING_DIR/usr/lib/xrizer/bin/linux64
 
 # install wayvr by unpacking appimage
 mkdir -p /tmp/wayvr
@@ -23,7 +23,7 @@ mv WayVR-x86_64.AppImage wayvr.appimage
 chmod +x wayvr.appimage
 ./wayvr.appimage --appimage-extract
 cp -rfnv ./squashfs-root/usr /
-#cp -rfnv ./squashfs-root/usr $STAGING_DIR/
+cp -rfnv ./squashfs-root/usr $STAGING_DIR/
 cd /tmp
 rm -r -f /tmp/wayvr
 
@@ -34,7 +34,7 @@ git clone https://gitlab.freedesktop.org/monado/monado.git
 cd /tmp/monado-build/monado
 mkdir /tmp/monado-build/monado/build
 cd /tmp/monado-build/monado/build
-cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=RelWithDebInfo -G "Unix Makefiles"
+cmake .. -DCMAKE_INSTALL_PREFIX=$STAGING_DIR/usr -DCMAKE_BUILD_TYPE=RelWithDebInfo -G "Unix Makefiles"
 cmake --build .
 cmake --build . --target install
 
@@ -47,9 +47,9 @@ mkdir -p /tmp/cargo_home
 export CARGO_HOME=/tmp/cargo_home
 cargo xbuild --release
 mkdir -p /usr/lib/xrizer/bin/linux64
-mv /tmp/xrizer-build/xrizer/target/release/libxrizer.so /usr/lib/xrizer/bin/linux64/vrclient.so
-mv /tmp/xrizer-build/xrizer/target/release/bin/version.txt /usr/lib/xrizer/bin/version.txt
-mv /tmp/misc/other/openvrpaths.vrpath /usr/lib/xrizer/openvrpaths.vrpath
+mv /tmp/xrizer-build/xrizer/target/release/libxrizer.so $STAGING_DIR/usr/lib/xrizer/bin/linux64/vrclient.so
+mv /tmp/xrizer-build/xrizer/target/release/bin/version.txt $STAGING_DIR/usr/lib/xrizer/bin/version.txt
+mv /tmp/misc/other/openvrpaths.vrpath $STAGING_DIR/usr/lib/xrizer/openvrpaths.vrpath
 cd /tmp
 rm -r -f /tmp/xrizer-build
 rm -r -f /tmp/cargo_home
