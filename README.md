@@ -2,7 +2,7 @@
 
 # Purpose
 
-Modified [Bazzite](https://github.com/ublue-os/bazzite) image, added build dependencies for what I use in Envision as well as building and installing envision itself
+Modified [Bazzite](https://github.com/ublue-os/bazzite) image, including precompiled monado, xrizer and opencomposite. I don't need the devel anymore as envision now supports using system binaries, so I added compilation of latest monado/xrizer git to the image build process so there is always an up to date build in the image. If you need build dependencies, build them with distrobox, you can then use that profile outside distrobox too
 
 Also added a some programs, for personal use, might miss dependencies you need in Envision
 
