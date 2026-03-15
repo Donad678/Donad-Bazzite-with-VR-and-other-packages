@@ -32,12 +32,8 @@ ARG IS_KDE
 COPY install-scripts/ /tmp/install-scripts/
 COPY misc/ /tmp/misc/
 COPY *.sh /tmp/
-COPY --from=builder /tmp/staging/ /tmp/from-builder/
 
 RUN mkdir -p /var/lib/alternatives
-
-RUN cp -rnv /tmp/from-builder/usr/* /usr/ && \
-    rm -rf /tmp/from-builder
 
 RUN dnf5 config-manager setopt terra.enabled=1 terra-extras.enabled=1 terra-mesa.enabled=1 fedora-multimedia.enabled=1 && \
     dnf5 -y copr enable bazzite-org/bazzite-multilib && \
@@ -69,6 +65,11 @@ RUN if [ "${IS_KDE}" == "true" ]; then \
         echo "Non-KDE image, skipping KDE additions."; \
     fi
 
+COPY --from=builder /tmp/staging/ /tmp/from-builder/
+RUN cp -rnv /tmp/from-builder/usr/* /usr/ && \
+    rm -rf /tmp/from-builder
+
+RUN /tmp/install-scripts/fix-permissions.sh
 RUN dnf5 config-manager setopt terra.enabled=0 terra-extras.enabled=0 terra-mesa.enabled=0 fedora-multimedia.enabled=0 && \
     dnf5 -y copr disable bazzite-org/bazzite-multilib && \
     systemctl disable podman.socket

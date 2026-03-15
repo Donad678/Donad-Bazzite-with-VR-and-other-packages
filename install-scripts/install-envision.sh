@@ -8,19 +8,12 @@ dnf5 -y install envision-nightly --allowerasing
 
 dnf5 install -y glslc libusb1 onnx-libs onnxruntime opencv SDL3 libbsd x264-libs bluez-libs vulkan-loader openxr
 dnf5 install -y 'opencv*' --exclude='*devel*' --exclude='*doc*' --exclude='*examples*' --exclude='*java*' --allowerasing
+
+dnf5 install -y openvr-api libwayland-client
 # Install Monado binary for envision to make new installations easier
 #dnf5 -y copr enable joviatrix/monado-git
 #dnf5 -y install monado
 #dnf5 -y copr disable joviatrix/monado-git
 dnf5 -y install xr-hardware
-
-# Set nice for monado
-/usr/bin/setcap CAP_SYS_NICE=eip /usr/bin/monado-service
-
-# Edit Envision .desktop to force restart headset on start
-desktop-file-edit --set-key="Exec" --set-value="/usr/bin/forceRestartIndex envision" "/usr/share/applications/org.gabmus.envision.Devel.desktop"
-
-# fix index on boot
-install -m 644 -o root -g root "/tmp/misc/udev/60-valve-index-reboot.rules" "/etc/udev/rules.d/60-valve-index-reboot.rules"
 
 # cp /tmp/misc/other/openvrpaths.vrpath /usr/lib/xrizer/openvrpaths.vrpath
