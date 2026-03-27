@@ -17,7 +17,7 @@ mkdir -p $STAGING_DIR/usr/lib/xrizer/bin/linux64
 mkdir -p /tmp/wayvr
 cd /tmp/wayvr/
 #mv /tmp/misc/appimages/wayvr.appimage ./
-curl -Lo wayvr.zip https://nightly.link/wlx-team/wayvr/workflows/build-appimage/main/WayVR-main-x86_64.AppImage.zip
+curl -Lo wayvr.zip https://nightly.link/wayvr-org/wayvr/workflows/build-appimage/main/WayVR-main-x86_64.AppImage
 unzip wayvr.zip
 mv WayVR-x86_64.AppImage wayvr.appimage
 chmod +x wayvr.appimage
