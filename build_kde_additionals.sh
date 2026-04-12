@@ -2,4 +2,4 @@
 
 set -ouex pipefail
 
-dnf5 install -y gwenview kvantum
+dnf5 install -y gwenview kvantum kmix
