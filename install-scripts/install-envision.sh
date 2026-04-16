@@ -12,7 +12,7 @@ dnf5 install -y 'opencv*' --exclude='*devel*' --exclude='*doc*' --exclude='*exam
 dnf5 install -y openvr-api openxr-libs libwayland-client
 
 # wayvr deps
-dnf5 install -y fontconfig freetype libxkbcommon libxkbcommon-x11 alsa-lib pipewire libshaderc openxr openvr libX11 libXext libXrandr
+dnf5 install -y fontconfig freetype libxkbcommon libxkbcommon-x11 alsa-lib pipewire libshaderc openxr openvr-api libX11 libXext libXrandr
 # Install Monado binary for envision to make new installations easier
 #dnf5 -y copr enable joviatrix/monado-git
 #dnf5 -y install monado
