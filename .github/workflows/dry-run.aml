@@ -1,0 +1,96 @@
+---
+name: Dry Run Build
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+  #schedule:
+  #  - cron: '05 10 * * *'  # 10:05am UTC everyday
+  #push:
+  #  branches:
+   #   - main
+   # paths-ignore:
+   #   - '**/README.md'
+
+env:
+  IMAGE_REGISTRY: "ghcr.io/${{ github.repository_owner }}"
+  ARTIFACTHUB_LOGO_URL: "https://avatars.githubusercontent.com/u/120078124?s=200&v=4"
+  DEFAULT_TAG: "latest"
+
+jobs:
+  build_push:
+    name: Build and push image
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - variant: nvidia-kde
+            base: ghcr.io/ublue-os/bazzite-nvidia-open:stable
+            image_name: "donad-bazzite-kde"
+            image_desc: "Custom Bazzite KDE Optimized for NVIDIA Hardware"
+            is_kde: "true"
+
+    steps:
+      - name: Free Disk Space (Ubuntu)
+        uses: jlumbroso/free-disk-space@v1.3.1
+
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Get current date
+        id: date
+        run: echo "date=$(date -u +%Y\-%m\-%d\T%H\:%M\:%S\Z)" >> $GITHUB_OUTPUT
+
+      - name: Image Metadata
+        uses: docker/metadata-action@030e881283bb7a6894de51c315a6bfe6a94e05cf # v6.0.0
+        id: metadata
+        with:
+          # This generates all the tags for your image, you can add custom tags here too!
+          # By default, it should generate "latest" and "latest.(date here)".
+          tags: |
+            type=raw,value=latest
+            type=raw,value=latest.{{date 'YYYYMMDD'}}
+            type=raw,value={{date 'YYYYMMDD'}}
+            type=sha,enable=${{ github.event_name == 'pull_request' }}
+            type=ref,event=pr
+          labels: |
+            io.artifacthub.package.readme-url=https://raw.githubusercontent.com/${{ github.repository_owner }}/${{ matrix.image_name }}/refs/heads/main/README.md
+            org.opencontainers.image.created=${{ steps.date.outputs.date }}
+            org.opencontainers.image.description=${{ matrix.image_desc }}
+            org.opencontainers.image.documentation=https://raw.githubusercontent.com/${{ github.repository_owner }}/${{ matrix.image_name }}/refs/heads/main/README.md
+            org.opencontainers.image.source=https://github.com/${{ github.repository_owner }}/${{ matrix.image_name }}/blob/main/Containerfile
+            org.opencontainers.image.title=${{ matrix.image_name }}
+            org.opencontainers.image.url=https://github.com/${{ github.repository_owner }}/${{ matrix.image_name }}
+            org.opencontainers.image.vendor=${{ github.repository_owner }}
+            org.opencontainers.image.version=latest
+            io.artifacthub.package.deprecated=false
+            io.artifacthub.package.keywords=bootc,ublue,universal-blue
+            io.artifacthub.package.license=Apache-2.0
+            io.artifacthub.package.logo-url=${{ env.ARTIFACTHUB_LOGO_URL }}
+            io.artifacthub.package.prerelease=false
+            containers.bootc=1
+          sep-tags: " "
+          sep-annotations: " "
+
+      # 3. Build the Image
+      - name: Build Image
+        id: build_image
+        uses: redhat-actions/buildah-build@v2
+        with:
+          containerfiles: |
+            ./Containerfile
+          build-args: |
+            BASE_IMAGE=${{ matrix.base }}
+            IS_KDE=${{ matrix.is_kde }}
+          # Build it with the full name immediately
+          image: ${{ matrix.image_name }}
+          tags: ${{ steps.metadata.outputs.tags }}
+          labels: ${{ steps.metadata.outputs.labels }}
+          oci: true
