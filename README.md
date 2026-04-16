@@ -49,3 +49,5 @@ Some files are from other repositories and cloned here for easier install, credi
 ](https://github.com/ShayBox/Lighthouse)
 
 [xrizer](https://github.com/Supreeeme/xrizer)
+
+While not outright copied I did use the code from the [wayvr pkgbuild on the aur](https://aur.archlinux.org/packages/wayvr-git) to make the wayvr compilation
