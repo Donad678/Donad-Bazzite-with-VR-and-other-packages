@@ -3,7 +3,7 @@ set -ouex pipefail
 
 dnf5 install -y xz ca-certificates
 dnf5 --setopt=disable_excludes=* install -y pipewire-devel --best --allowerasing
-dnf5 install -y cmake libxkbcommon libxkbcommon-devel fontconfig fontconfig-devel dbus dbus-devel alsa-lib alsa-lib-devel libshaderc-devel openssl-devel python3 wayland-devel pkgconf-pkg-config
+dnf5 install -y cmake libxkbcommon libxkbcommon-devel libxkbcommon-x11-devel fontconfig fontconfig-devel dbus dbus-devel alsa-lib alsa-lib-devel libshaderc-devel openssl-devel python3 wayland-devel pkgconf-pkg-config
 
 STAGING_DIR="/tmp/staging"
 
