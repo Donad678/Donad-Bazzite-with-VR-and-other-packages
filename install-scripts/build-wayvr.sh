@@ -6,6 +6,13 @@ dnf5 --setopt=disable_excludes=* install -y pipewire-devel --best --allowerasing
 dnf5 install -y cmake libxkbcommon libxkbcommon-devel fontconfig fontconfig-devel dbus dbus-devel alsa-lib alsa-lib-devel libshaderc-devel openssl-devel python3 wayland-devel pkgconf-pkg-config
 
 STAGING_DIR="/tmp/staging"
+
+export ORT_ROOT="/tmp/ort_runtime"
+mkdir -p "$ORT_ROOT"
+export ORT_STRATEGY="download"
+export XDG_CACHE_HOME="/tmp/wayvr-build/cache"
+mkdir -p "$XDG_CACHE_HOME"
+export ORT_DEBUG=1
 # Set up build directory
 mkdir -p /tmp/wayvr-build
 cd /tmp/wayvr-build
