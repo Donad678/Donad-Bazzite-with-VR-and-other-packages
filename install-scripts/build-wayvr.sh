@@ -1,7 +1,7 @@
 # build wayvr based on the pkgbuild from https://aur.archlinux.org/packages/wayvr-git
 set -ouex pipefail
 
-dnf5 install -y cmake libxkbcommon libxkbcommon-devel fontconfig fontconfig-devel dbus dbus-devel alsa-lib alsa-lib-devel libshaderc-devel openssl-devel python3 wayland-devel pkgconf-pkg-config pipewire-devel
+dnf5 install -y cmake libxkbcommon libxkbcommon-devel fontconfig fontconfig-devel dbus dbus-devel alsa-lib alsa-lib-devel libshaderc-devel openssl-devel python3 wayland-devel pkgconf-pkg-config pipewire-devel --best --allowerasing
 
 STAGING_DIR="/tmp/staging"
 # Set up build directory
