@@ -11,21 +11,22 @@ dnf5 install -y mesa-libgbm-devel libglvnd-devel
 STAGING_DIR="/tmp/staging"
 #STAGING_DIR=""
 
-mkdir -p $STAGING_DIR/usr/lib/xrizer/bin/linux64
+chmod +x /tmp/install-scripts/build-wayvr.sh
+/tmp/install-scripts/build-wayvr.sh
 
 # install wayvr by unpacking appimage
-mkdir -p /tmp/wayvr
-cd /tmp/wayvr/
+#mkdir -p /tmp/wayvr
+#cd /tmp/wayvr/
 #mv /tmp/misc/appimages/wayvr.appimage ./
-curl -Lo wayvr.zip https://nightly.link/wayvr-org/wayvr/workflows/build-appimage/main/WayVR-main-x86_64.AppImage.zip
-unzip wayvr.zip
-mv WayVR-x86_64.AppImage wayvr.appimage
-chmod +x wayvr.appimage
-./wayvr.appimage --appimage-extract
-cp -rfnv ./squashfs-root/usr /
-cp -rfnv ./squashfs-root/usr $STAGING_DIR/
-cd /tmp
-rm -r -f /tmp/wayvr
+#curl -Lo wayvr.zip https://nightly.link/wayvr-org/wayvr/workflows/build-appimage/main/WayVR-main-x86_64.AppImage.zip
+#unzip wayvr.zip
+#mv WayVR-x86_64.AppImage wayvr.appimage
+#chmod +x wayvr.appimage
+#./wayvr.appimage --appimage-extract
+#cp -rfnv ./squashfs-root/usr /
+#cp -rfnv ./squashfs-root/usr $STAGING_DIR/
+#cd /tmp
+#rm -r -f /tmp/wayvr
 
 #Compile monado ourselves
 mkdir -p /tmp/monado-build
@@ -46,7 +47,7 @@ cd /tmp/xrizer-build/xrizer
 mkdir -p /tmp/cargo_home
 export CARGO_HOME=/tmp/cargo_home
 cargo xbuild --release
-mkdir -p /usr/lib/xrizer/bin/linux64
+mkdir -p $STAGING_DIR/usr/lib/xrizer/bin/linux64
 mv /tmp/xrizer-build/xrizer/target/release/libxrizer.so $STAGING_DIR/usr/lib/xrizer/bin/linux64/vrclient.so
 mv /tmp/xrizer-build/xrizer/target/release/bin/version.txt $STAGING_DIR/usr/lib/xrizer/bin/version.txt
 mv /tmp/misc/other/openvrpaths.vrpath $STAGING_DIR/usr/lib/xrizer/openvrpaths.vrpath
