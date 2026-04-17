@@ -34,18 +34,11 @@ Includes envision with dependencies for Wired headsets (valve index is what I'm 
 
 You can download the latest iso here, it gets built weekly based on the latest available image
 
-## NVIDIA
-
-[**GNOME**](https://nightly.link/Donad678/Donad-Bazzite-with-VR-and-other-packages/workflows/build_iso/main/donad-bazzite-gnome-latest.zip), [**KDE**](https://nightly.link/Donad678/Donad-Bazzite-with-VR-and-other-packages/workflows/build_iso/main/donad-bazzite-kde-latest.zip)
-
-## AMD/Intel
-
-[**GNOME**](https://nightly.link/Donad678/Donad-Bazzite-with-VR-and-other-packages/workflows/build_iso/main/donad-bazzite-gnome-mesa-latest.zip), [**KDE**](https://nightly.link/Donad678/Donad-Bazzite-with-VR-and-other-packages/workflows/build_iso/main/donad-bazzite-kde-mesa-latest.zip)
-
-## Steam Deck
-
-[**GNOME**](https://nightly.link/Donad678/Donad-Bazzite-with-VR-and-other-packages/workflows/build_iso/main/donad-bazzite-gnome-deck-latest.zip), [**KDE**](https://nightly.link/Donad678/Donad-Bazzite-with-VR-and-other-packages/workflows/build_iso/main/donad-bazzite-kde-deck-latest.zip)
-
+| Image  | Gnome | KDE |
+| --- | --- | --- |
+| NVIDIA  | [Download](https://nightly.link/Donad678/Donad-Bazzite-with-VR-and-other-packages/workflows/build_iso/main/donad-bazzite-gnome-latest.zip)  | [Download](https://nightly.link/Donad678/Donad-Bazzite-with-VR-and-other-packages/workflows/build_iso/main/donad-bazzite-kde-latest.zip) |
+| AMD/Intel  | [Download](https://nightly.link/Donad678/Donad-Bazzite-with-VR-and-other-packages/workflows/build_iso/main/donad-bazzite-gnome-mesa-latest.zip)  | [Download](https://nightly.link/Donad678/Donad-Bazzite-with-VR-and-other-packages/workflows/build_iso/main/donad-bazzite-kde-mesa-latest.zip) |
+| Steam Deck  | [Download](https://nightly.link/Donad678/Donad-Bazzite-with-VR-and-other-packages/workflows/build_iso/main/donad-bazzite-gnome-deck-latest.zip)  | [Download](https://nightly.link/Donad678/Donad-Bazzite-with-VR-and-other-packages/workflows/build_iso/main/donad-bazzite-kde-deck-latest.zip) |
 
 # Credits
 
