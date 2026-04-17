@@ -32,9 +32,19 @@ Includes envision with dependencies for Wired headsets (valve index is what I'm 
 
 # ISO
 
-You can also download the ISO from the latest build artifact for a fresh install
+You can also download the ISO from the latest build artifacts for a fresh install
 
-https://github.com/Donad678/Donad-Bazzite-with-VR-and-other-packages/actions/workflows/build_iso.yml
+## NVIDIA
+
+[**GNOME**](https://nightly.link/Donad678/Donad-Bazzite-with-VR-and-other-packages/workflows/build_iso/main/donad-bazzite-gnome-latest.zip), [**KDE**](https://nightly.link/Donad678/Donad-Bazzite-with-VR-and-other-packages/workflows/build_iso/main/donad-bazzite-kde-latest.zip)
+
+## AMD/Intel
+
+[**GNOME**](https://nightly.link/Donad678/Donad-Bazzite-with-VR-and-other-packages/workflows/build_iso/main/donad-bazzite-gnome-mesa-latest.zip), [**KDE**](https://nightly.link/Donad678/Donad-Bazzite-with-VR-and-other-packages/workflows/build_iso/main/donad-bazzite-kde-mesa-latest.zip)
+
+## Steam Deck
+
+[**GNOME**](https://nightly.link/Donad678/Donad-Bazzite-with-VR-and-other-packages/workflows/build_iso/main/donad-bazzite-gnome-deck-latest.zip), [**KDE**](https://nightly.link/Donad678/Donad-Bazzite-with-VR-and-other-packages/workflows/build_iso/main/donad-bazzite-kde-deck-latest.zip)
 
 
 # Credits
