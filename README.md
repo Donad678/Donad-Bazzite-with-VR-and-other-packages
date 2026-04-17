@@ -32,9 +32,9 @@ Includes envision with dependencies for Wired headsets (valve index is what I'm 
 
 # ISO
 
-## NVIDIA
-
 You can download the latest iso here, it gets built weekly based on the latest available image
+
+## NVIDIA
 
 [**GNOME**](https://nightly.link/Donad678/Donad-Bazzite-with-VR-and-other-packages/workflows/build_iso/main/donad-bazzite-gnome-latest.zip), [**KDE**](https://nightly.link/Donad678/Donad-Bazzite-with-VR-and-other-packages/workflows/build_iso/main/donad-bazzite-kde-latest.zip)
 
