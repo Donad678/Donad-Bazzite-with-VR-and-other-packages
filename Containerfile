@@ -9,6 +9,7 @@ COPY / /tmp/
 RUN dnf5 config-manager setopt terra.enabled=1 terra-extras.enabled=1 terra-mesa.enabled=1 fedora-multimedia.enabled=1 && \
     dnf5 -y copr enable bazzite-org/bazzite-multilib
 RUN /tmp/install-scripts/build-envision.sh
+RUN /tmp/install-scripts/lsfg-vk.sh
 
 # Build final image
 
@@ -55,7 +56,7 @@ RUN dnf5 install -y \
 RUN /tmp/install-scripts/install-virtualhere-server.sh
 #RUN /tmp/install-scripts/build-envision.sh
 RUN /tmp/install-scripts/install-envision.sh
-RUN /tmp/install-scripts/lsfg-vk.sh
+#RUN /tmp/install-scripts/lsfg-vk.sh
 RUN /tmp/install-scripts/install-custom-scripts.sh
 
 RUN if [ "${IS_KDE}" == "true" ]; then \

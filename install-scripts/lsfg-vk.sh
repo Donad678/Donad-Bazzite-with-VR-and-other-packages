@@ -2,26 +2,32 @@
 set -euo pipefail
 
 REPO="PancakeTAS/lsfg-vk"
+STAGING_DIR="/tmp/staging"
 
-# Get the RPM download URL from the latest release
-DOWNLOAD_URL=$(curl -s "https://api.github.com/repos/$REPO/releases/latest" \
-  | jq -r '.assets[] | select(.name | test("\\.rpm$")) | .browser_download_url' \
-  | head -n 1)
+echo "Fetching latest prerelease info for ${REPO}..."
 
-if [[ -z "$DOWNLOAD_URL" ]]; then
-  echo "❌ No RPM file found in the latest release of $REPO"
-  exit 1
+# Find the download URL via GitHub API
+DOWNLOAD_URL=$(curl -sL "https://api.github.com/repos/${REPO}/releases" | jq -r '
+  map(select(.prerelease == true)) 
+  | .[0].assets[] 
+  | select(.name | test("linux\\.tar\\.xz$")) 
+  | .browser_download_url
+')
+
+if [[ -z "$DOWNLOAD_URL" || "$DOWNLOAD_URL" == "null" ]]; then
+    echo "Error: Could not find a matching tar.xz asset."
+    exit 1
 fi
 
-FILENAME=$(basename "$DOWNLOAD_URL")
+# Prepare Staging Area
+mkdir -p "${STAGING_DIR}"
+ARCHIVE_PATH="${STAGING_DIR}/lsfg-vk.tar.xz"
 
-echo "📥 Downloading $FILENAME..."
-curl -L -o "$FILENAME" "$DOWNLOAD_URL"
+echo "Downloading asset to ${STAGING_DIR}..."
+curl -sL "${DOWNLOAD_URL}" -o "${ARCHIVE_PATH}"
 
-echo "📦 Installing $FILENAME..."
-dnf5 install -y ./"$FILENAME"
+# Extract into the staging directory
+echo "Extracting archive..."
+tar -xvf "${ARCHIVE_PATH}" -C "${STAGING_DIR}" --no-same-owner
 
-echo "Remove install File"
-rm -f ./"$FILENAME"
-
-echo "✅ Installation LSFG-VK installation complete."
+echo "Installation complete!"
