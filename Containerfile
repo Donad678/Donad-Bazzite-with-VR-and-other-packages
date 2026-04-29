@@ -55,6 +55,8 @@ RUN dnf5 install -y \
     ani-cli \
     faugus-launcher
 
+RUN dnf5 install -y qt6-qtdeclarative qt6-qtbase
+
 RUN /tmp/install-scripts/install-virtualhere-server.sh
 #RUN /tmp/install-scripts/build-envision.sh
 RUN /tmp/install-scripts/install-envision.sh
