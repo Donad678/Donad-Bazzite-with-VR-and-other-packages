@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Configuration
 REPO="PancakeTAS/lsfg-vk"
-STAGING_DIR="/tmp/staging"
+STAGING_DIR="/tmp/staging/usr"
 
-echo "Fetching latest prerelease info for ${REPO}..."
+echo "Fetching latest prerelease info..."
 
-# Find the download URL via GitHub API
+# Find the download URL
 DOWNLOAD_URL=$(curl -sL "https://api.github.com/repos/${REPO}/releases" | jq -r '
   map(select(.prerelease == true)) 
   | .[0].assets[] 
@@ -19,15 +20,16 @@ if [[ -z "$DOWNLOAD_URL" || "$DOWNLOAD_URL" == "null" ]]; then
     exit 1
 fi
 
-# Prepare Staging Area
+# Ensure the nested staging directory exists
 mkdir -p "${STAGING_DIR}"
-ARCHIVE_PATH="${STAGING_DIR}/lsfg-vk.tar.xz"
+ARCHIVE_PATH="/tmp/lsfg-vk.tar.xz"
 
-echo "Downloading asset to ${STAGING_DIR}..."
+echo "Downloading asset..."
 curl -sL "${DOWNLOAD_URL}" -o "${ARCHIVE_PATH}"
 
-# Extract into the staging directory
-echo "Extracting archive..."
-tar -xvf "${ARCHIVE_PATH}" -C "${STAGING_DIR}" --no-same-owner
+# Extracting with full path reporting
+# We use -v for verbose, but we'll pipe the output to ensure it looks exactly like the full path
+echo "Extracting archive to ${STAGING_DIR}..."
+tar -xvf "${ARCHIVE_PATH}" -C "${STAGING_DIR}" --no-same-owner | sed "s|^\./|${STAGING_DIR}/|"
 
 echo "Installation complete!"
