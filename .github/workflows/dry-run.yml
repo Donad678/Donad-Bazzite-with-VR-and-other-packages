@@ -31,10 +31,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - variant: nvidia-kde
-            base: ghcr.io/ublue-os/bazzite-nvidia-open:stable
-            image_name: "donad-bazzite-kde"
-            image_desc: "Custom Bazzite KDE Optimized for NVIDIA Hardware"
+          - variant: main-kde
+            base: ghcr.io/ublue-os/bazzite:stable
+            image_name: "donad-bazzite-kde-mesa"
+            image_desc: "Custom Bazzite KDE for AMD and Intel Systems"
             is_kde: "true"
 
     steps:
