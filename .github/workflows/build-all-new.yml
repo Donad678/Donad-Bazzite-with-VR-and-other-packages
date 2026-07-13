@@ -65,6 +65,8 @@ jobs:
     steps:
       - name: Free Disk Space (Ubuntu)
         uses: jlumbroso/free-disk-space@v1.3.1
+        with:
+          swap-storage: false
 
       - name: Checkout
         uses: actions/checkout@v7
