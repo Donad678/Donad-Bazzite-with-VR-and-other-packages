@@ -40,9 +40,54 @@ jobs:
     steps:
       - name: Free Disk Space (Ubuntu)
         uses: jlumbroso/free-disk-space@v1.3.1
+        with:
+          swap-storage: false
 
       - name: Checkout
         uses: actions/checkout@v7
+
+      # Workaround bug where capital letters in your GitHub username make it impossible to push to GHCR.
+      # https://github.com/macbre/push-to-ghcr/issues/12
+      - name: Lowercase Registry
+        id: registry_case
+        uses: ASzc/change-string-case-action@v8
+        with:
+          string: ${{ env.IMAGE_REGISTRY }}
+
+      - name: Lowercase Image
+        id: image_case
+        uses: ASzc/change-string-case-action@v8
+        with:
+          string: ${{ matrix.image_name }}
+
+      - name: Check for base image update
+        id: check_update
+        shell: bash
+        run: |
+          set -e
+
+          upstream_digest=$(skopeo inspect docker://${{ matrix.base }} | jq -r '.Digest')
+          echo "upstream_digest=${upstream_digest}" >> "$GITHUB_OUTPUT"
+
+          last_digest=$(skopeo inspect docker://${{ steps.registry_case.outputs.lowercase }}/${{ steps.image_case.outputs.lowercase }}:latest 2>/dev/null \
+            | jq -r '.Labels["org.donad.base_digest"] // "none"' || echo "none")
+
+          echo "Upstream digest: ${upstream_digest}"
+          echo "Last built against: ${last_digest}"
+
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "should_build=true" >> "$GITHUB_OUTPUT"
+            echo "Manual trigger — building regardless of digest."
+          elif [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            echo "should_build=true" >> "$GITHUB_OUTPUT"
+            echo "Pull request — building for validation regardless of digest."
+          elif [[ "${upstream_digest}" != "${last_digest}" ]]; then
+            echo "should_build=true" >> "$GITHUB_OUTPUT"
+            echo "New base image detected — building."
+          else
+            echo "should_build=false" >> "$GITHUB_OUTPUT"
+            echo "No change in base image — skipping build."
+          fi
 
       - name: Get current date
         id: date
@@ -51,6 +96,7 @@ jobs:
       - name: Image Metadata
         uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302 # v6.2.0
         id: metadata
+        if: steps.check_update.outputs.should_build == 'true'
         with:
           # This generates all the tags for your image, you can add custom tags here too!
           # By default, it should generate "latest" and "latest.(date here)".
@@ -89,6 +135,7 @@ jobs:
           build-args: |
             BASE_IMAGE=${{ matrix.base }}
             IS_KDE=${{ matrix.is_kde }}
+            BASE_DIGEST=${{ steps.check_update.outputs.upstream_digest }}
           # Build it with the full name immediately
           image: ${{ matrix.image_name }}
           tags: ${{ steps.metadata.outputs.tags }}
