@@ -1,6 +1,7 @@
 # This must be at the very top, before FROM
 ARG BASE_IMAGE=fakeImage
 ARG IS_KDE=false
+ARG BASE_DIGEST=unknown
 
 # Build applications without polluting final image
 FROM ${BASE_IMAGE} AS builder
@@ -18,6 +19,8 @@ RUN /tmp/install-scripts/build-envision.sh
 FROM ${BASE_IMAGE}
 
 ARG IS_KDE
+ARG BASE_DIGEST
+LABEL org.donad.base_digest="${BASE_DIGEST}"
 
 ## Other possible base images include:
 # FROM ghcr.io/ublue-os/bazzite:stable
