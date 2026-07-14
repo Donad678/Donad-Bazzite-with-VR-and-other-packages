@@ -63,14 +63,6 @@ jobs:
             is_kde: "false"
 
     steps:
-      - name: Free Disk Space (Ubuntu)
-        uses: jlumbroso/free-disk-space@v1.3.1
-        with:
-          swap-storage: false
-
-      - name: Checkout
-        uses: actions/checkout@v7
-
       # Workaround bug where capital letters in your GitHub username make it impossible to push to GHCR.
       # https://github.com/macbre/push-to-ghcr/issues/12
       - name: Lowercase Registry
@@ -114,9 +106,20 @@ jobs:
             echo "No change in base image — skipping build."
           fi
 
+      - name: Free Disk Space (Ubuntu)
+        uses: jlumbroso/free-disk-space@v1.3.1
+        if: steps.check_update.outputs.should_build == 'true'
+        with:
+          swap-storage: false
+
+      - name: Checkout
+        uses: actions/checkout@v7
+        if: steps.check_update.outputs.should_build == 'true'
+
       - name: Get current date
         id: date
         run: echo "date=$(date -u +%Y\-%m\-%d\T%H\:%M\:%S\Z)" >> $GITHUB_OUTPUT
+        if: steps.check_update.outputs.should_build == 'true'
 
       - name: Image Metadata
         uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302 # v6.2.0
