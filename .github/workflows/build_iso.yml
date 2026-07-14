@@ -70,12 +70,32 @@ jobs:
         with:
           string: ${{ env.IMAGE_REGISTRY }}
 
+      - name: Squash Image for Flatpak Dependency Check
+        id: squash_image
+        shell: bash
+        run: |
+          set -ex
+          image="${{ steps.registry_case.outputs.lowercase }}/${{ matrix.image_name }}:${{ steps.generate-tag.outputs.tag }}"
+          squashed_tag="squashed-${{ matrix.image_name }}:${{ steps.generate-tag.outputs.tag }}"
+
+          command -v buildah >/dev/null || sudo apt-get update -y && sudo apt-get install -y buildah
+
+          buildah pull "${image}"
+          ctr=$(buildah from "${image}")
+          buildah commit --squash "${ctr}" "localhost/${squashed_tag}"
+          buildah rm "${ctr}"
+
+          # Load the squashed image into Docker's local storage
+          buildah push "localhost/${squashed_tag}" "docker-daemon:${squashed_tag}"
+
+          echo "squashed_image=${squashed_tag}" >> $GITHUB_OUTPUT
+
       - name: Determine Flatpak Dependencies
         id: flatpak_dependencies
         shell: bash
         run: |
           set -ex
-          image="${{ steps.registry_case.outputs.lowercase }}/${{ matrix.image_name }}:${{ steps.generate-tag.outputs.tag }}"
+          image="${{ steps.squash_image.outputs.squashed_image }}"
           # Make temp space
           TEMP_FLATPAK_INSTALL_DIR=$(mktemp -d -p ${{ github.workspace }} flatpak.XXX)
           # Get list of refs from directory
