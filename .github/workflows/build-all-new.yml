@@ -156,7 +156,7 @@ jobs:
       # 3. Build the Image
       - name: Build Image
         id: build_image
-        uses: redhat-actions/buildah-build@v2
+        uses: redhat-actions/buildah-build@v3
         if: steps.check_update.outputs.should_build == 'true'
         with:
           containerfiles: |
