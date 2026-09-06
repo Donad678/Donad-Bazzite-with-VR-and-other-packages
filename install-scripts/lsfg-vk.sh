@@ -2,23 +2,25 @@
 set -euo pipefail
 
 # Configuration
-REPO="PancakeTAS/lsfg-vk"
+INDEX_URL="https://builds.lsfg-vk.dev/"
 STAGING_DIR="/tmp/staging/usr"
 
-echo "Fetching latest prerelease info..."
+echo "Fetching build index..."
+HTML=$(curl -sL "${INDEX_URL}")
 
-# Find the download URL
-DOWNLOAD_URL=$(curl -sL "https://api.github.com/repos/${REPO}/releases" | jq -r '
-  map(select(.prerelease == true)) 
-  | .[0].assets[] 
-  | select(.name | test("linux\\.tar\\.xz$")) 
-  | .browser_download_url
-')
+# Pull the href from the ">> Latest release (...) <<" row specifically
+# (not the git version or release candidate rows).
+FILENAME=$(grep -oE '<a href="[^"]+">&gt;&gt; Latest release \([^)]*\) &lt;&lt;</a>' <<< "${HTML}" \
+  | grep -oE 'href="[^"]+"' \
+  | sed -E 's/href="([^"]+)"/\1/')
 
-if [[ -z "$DOWNLOAD_URL" || "$DOWNLOAD_URL" == "null" ]]; then
-    echo "Error: Could not find a matching tar.xz asset."
+if [[ -z "${FILENAME:-}" ]]; then
+    echo "Error: Could not find the 'Latest release' link on ${INDEX_URL}."
     exit 1
 fi
+
+DOWNLOAD_URL="${INDEX_URL}${FILENAME}"
+echo "Latest release found: ${FILENAME}"
 
 # Ensure the nested staging directory exists
 mkdir -p "${STAGING_DIR}"
@@ -27,8 +29,12 @@ ARCHIVE_PATH="/tmp/lsfg-vk.tar.xz"
 echo "Downloading asset..."
 curl -sL "${DOWNLOAD_URL}" -o "${ARCHIVE_PATH}"
 
+if [[ ! -s "${ARCHIVE_PATH}" ]]; then
+    echo "Error: Download failed or file is empty."
+    exit 1
+fi
+
 # Extracting with full path reporting
-# We use -v for verbose, but we'll pipe the output to ensure it looks exactly like the full path
 echo "Extracting archive to ${STAGING_DIR}..."
 tar -xvf "${ARCHIVE_PATH}" -C "${STAGING_DIR}" --no-same-owner | sed "s|^\./|${STAGING_DIR}/|"
 
