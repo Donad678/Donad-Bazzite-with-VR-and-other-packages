@@ -3,7 +3,7 @@ set -euo pipefail
 
 # Configuration
 INDEX_URL="https://builds.lsfg-vk.dev/"
-STAGING_DIR="./tmp/staging/usr"
+STAGING_DIR="/tmp/staging/usr"
 
 echo "Fetching build index..."
 HTML=$(curl -sL --fail --connect-timeout 10 --max-time 30 "${INDEX_URL}")
@@ -23,7 +23,7 @@ echo "Latest release found: ${FILENAME}"
 
 # Ensure the nested staging directory exists
 mkdir -p "${STAGING_DIR}"
-ARCHIVE_PATH="./tmp/lsfg-vk.tar.xz"
+ARCHIVE_PATH="/tmp/lsfg-vk.tar.xz"
 
 echo "Downloading asset from ${DOWNLOAD_URL}..."
 curl -L --fail --connect-timeout 10 --max-time 300 --progress-bar "${DOWNLOAD_URL}" -o "${ARCHIVE_PATH}"
