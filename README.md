@@ -53,4 +53,9 @@ Some files are from other repositories and cloned here for easier install, credi
 
 [xrizer](https://github.com/Supreeeme/xrizer)
 
+Also using
+
+[LSFG-VK](https://lsfg-vk.dev)
+
+
 While not outright copied I did use the code from the [wayvr pkgbuild on the aur](https://aur.archlinux.org/packages/wayvr-git) to make the wayvr compilation
