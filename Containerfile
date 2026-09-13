@@ -56,7 +56,9 @@ RUN dnf5 install -y \
 
 RUN dnf5 install -y \
     ani-cli \
-    faugus-launcher
+    faugus-launcher \
+    firetools \
+    firejail
 
 RUN dnf5 install -y qt6-qtdeclarative qt6-qtbase
 
