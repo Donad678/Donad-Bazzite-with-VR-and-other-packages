@@ -107,7 +107,7 @@ jobs:
           fi
 
       - name: Free Disk Space (Ubuntu)
-        uses: jlumbroso/free-disk-space@v1.3.1
+        uses: jlumbroso/free-disk-space@v2.0.0
         if: steps.check_update.outputs.should_build == 'true'
         with:
           swap-storage: false
