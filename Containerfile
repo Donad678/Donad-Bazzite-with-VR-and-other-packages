@@ -67,7 +67,7 @@ RUN /tmp/install-scripts/install-virtualhere-server.sh
 RUN /tmp/install-scripts/install-envision.sh
 #RUN /tmp/install-scripts/lsfg-vk.sh
 RUN /tmp/install-scripts/install-custom-scripts.sh
-RUN chmod +x /tmp/install-scripts/install-koharu.sh && /tmp/install-scripts/install-koharu.sh
+#RUN chmod +x /tmp/install-scripts/install-koharu.sh && /tmp/install-scripts/install-koharu.sh
 
 RUN if [ "${IS_KDE}" == "true" ]; then \
         echo "KDE detected, running KDE additions..."; \
