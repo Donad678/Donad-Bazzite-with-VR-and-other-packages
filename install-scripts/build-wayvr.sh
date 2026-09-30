@@ -44,7 +44,7 @@ mv target/release/wayvr $STAGING_DIR/usr/bin/wayvr
 mv target/release/wayvrctl $STAGING_DIR/usr/bin/wayvrctl
 
 cd /tmp/wayvr-build/repo/wayvr
-mv wayvr-amd64.desktop $STAGING_DIR/usr/share/applications/wayvr.desktop
+mv wayvr.desktop $STAGING_DIR/usr/share/applications/wayvr.desktop
 mv wayvr.png $STAGING_DIR/usr/share/icons/hicolor/128x128/apps/wayvr.png
 mv wayvr.svg $STAGING_DIR/usr/share/icons/hicolor/scalable/apps/wayvr.svg
 
