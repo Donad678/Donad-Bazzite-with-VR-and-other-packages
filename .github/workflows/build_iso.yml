@@ -30,7 +30,7 @@ jobs:
           - donad-bazzite-kde-mesa
           - donad-bazzite-kde-deck
           - donad-bazzite-gnome-deck
-        major_version: [44]
+        major_version: [45]
     steps:
 
       - name: Free Disk Space (Ubuntu)
