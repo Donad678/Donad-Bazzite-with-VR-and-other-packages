@@ -6,7 +6,9 @@ dnf5 install -y wivrn-dashboard
 #dnf5 -y remove envision
 dnf5 -y install envision-nightly --allowerasing
 
-dnf5 install -y glslc libusb1 onnx-libs onnxruntime opencv SDL3 libbsd x264-libs bluez-libs vulkan-loader openxr
+# Removed packages: bluez-libs
+
+dnf5 install -y glslc libusb1 onnx-libs onnxruntime opencv SDL3 libbsd x264-libs vulkan-loader openxr
 dnf5 install -y 'opencv*' --exclude='*devel*' --exclude='*doc*' --exclude='*examples*' --exclude='*java*' --allowerasing
 
 dnf5 install -y openvr-api openxr-libs libwayland-client
