@@ -89,4 +89,5 @@ RUN dnf5 config-manager setopt terra.enabled=0 terra-extras.enabled=0 terra-mesa
 RUN rm -rf /tmp/* && \
     dnf5 clean all
 
-RUN ostree container commit
+# RUN ostree container commit
+RUN bootc container lint
