@@ -16,11 +16,11 @@ dnf5 install -y libdav1d
 
 # wayvr deps
 dnf5 install -y fontconfig freetype libxkbcommon libxkbcommon-x11 alsa-lib pipewire libshaderc openxr openvr-api libX11 libXext libXrandr
-cd /usr/lib64 
-L=$(ls libopenvr_api.so.[0-9]*) 
-V=${L#*so.} 
-ln -sf "$L" libopenvr_api.so.${V%%.*} 
-ln -sf libopenvr_api.so.${V%%.*} libopenvr_api.so 
+cd /usr/lib64
+L=$(ls libopenvr_api.so.[0-9]*.[0-9]*.[0-9]* | sort -V | tail -n1)   # libopenvr_api.so.2.0.0
+V=${L#*so.}                                                          # 2.0.0
+ln -sf "$L" "libopenvr_api.so.${V%%.*}"                              # .so.2 -> .so.2.0.0
+ln -sf "libopenvr_api.so.${V%%.*}" libopenvr_api.so                  # .so   -> .so.2
 ldconfig
 # Install Monado binary for envision to make new installations easier
 #dnf5 -y copr enable joviatrix/monado-git
